@@ -74,15 +74,15 @@ export default function ContactForm() {
 
   return (
     <section>
-      <div className="flex gap-8 items-start max-md:flex-col max-md:items-center">
+      <div className="mt-8 flex gap-8 items-start max-md:flex-col max-md:items-center">
         <div className="flex-1 ">
-          <p className="text-xl font-bold mb-2">Follow me</p>
+         
           <p className="opacity-80">
             Have a big idea or a brand to develop? Reach out—I'd love to hear about 
             your project and see how I can help.
           </p>
-          
-          <div className="mt-6 flex items-center gap-4">
+           <p className="text-xl font-bold my-4">Get in touch</p>
+          <div className=" flex items-center gap-4">
             <Link href="https://github.com/wanchanlin" target="_blank" aria-label="GitHub">
               <FontAwesomeIcon icon={faGithub} className='text-4xl hover:text-[var(--retro-primary)] transition-colors'/>
             </Link>
