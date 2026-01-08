@@ -10,70 +10,58 @@ import GSAPWrapper from "./components/GSAPWrapper";
 import { gsap } from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import BinaryGrid from "./components/BinaryGrid";
-// import  HorizontalText  from "./components/HorizontalText";
+import HorizontalScrollText from "./components/HorizontalText";
+import projects from "./data/project";
 
-// client-only import to prevent GSAP plugin code from running on the server
-const HorizontalText = dynamic(() => import("./components/HorizontalText"), { ssr: false });
 
-const projects = [
-  {
-    number: "01",
-    title: "Jency Lab",
-    description: "an e-commerce website for Skincare products",
-    technologies: ["Nextjs", "Tailwind", "Js", "Supabase"],
-    imageSrc: "/images/jency.png",
-    link: "/projects/jencyLab",
-    date: "December 2025",
-  },
-
-  {
-    number: "02",
-    title: "Balance of Power",
-    description: "A series of cooperative audio storytelling games",
-    technologies: ["Html", "Css", "Js"],
-    imageSrc: "/images/pob.svg",
-    link: "/projects/powerOfBalance",
-    date: "April 2025",
-  },
-  {
-    number: "02",
-    title: "Bird IP",
-    description: "Your IP address indicates your local bird species",
-    technologies: ["Html", "Css", "Js", "php"],
-    imageSrc: "/images/birdip.svg",
-    link: "/projects/birdIP",
-    date: "April 2025",
-  },
-  {
-    number: "03",
-    title: "National Parks Ecology",
-    description:
-      "A project where admins manage national park info and users can view/save it",
-    technologies: ["Html", "Css", "Js", "php", "mysql"],
-    imageSrc: "/images/npe.svg",
-    link: "/projects/nationalParks",
-    date: "April 2025",
-  },
-  {
-    number: "04",
-    title: "Earth V.S. Mars",
-    description:
-      "A project that explores the differences between Earth and Mars using APIs",
-    technologies: ["pug", "Css", "node", "Js"],
-    imageSrc: "/images/evm.svg",
-    link: "/projects/weather",
-    date: "March 2025",
-  },
-  {
-    number: "05",
-    title: "ANIMATION PROJECT",
-    description: "Joyce's first coding project",
-    technologies: ["Html", "Css", "Js"],
-    imageSrc: "/images/animation.svg",
-    link: "/projects/birdanimation",
-    date: "Nov 2024",
-  },
-];
+//   {
+//     number: "02",
+//     title: "Balance of Power",
+//     description: "A series of cooperative audio storytelling games",
+//     technologies: ["Html", "Css", "Js"],
+//     imageSrc: "/images/pob.svg",
+//     link: "/projects/powerOfBalance",
+//     date: "April 2025",
+//   },
+//   {
+//     number: "02",
+//     title: "Bird IP",
+//     description: "Your IP address indicates your local bird species",
+//     technologies: ["Html", "Css", "Js", "php"],
+//     imageSrc: "/images/birdip.svg",
+//     link: "/projects/birdIP",
+//     date: "April 2025",
+//   },
+//   {
+//     number: "03",
+//     title: "National Parks Ecology",
+//     description:
+//       "A project where admins manage national park info and users can view/save it",
+//     technologies: ["Html", "Css", "Js", "php", "mysql"],
+//     imageSrc: "/images/npe.svg",
+//     link: "/projects/nationalParks",
+//     date: "April 2025",
+//   },
+//   {
+//     number: "04",
+//     title: "Earth V.S. Mars",
+//     description:
+//       "A project that explores the differences between Earth and Mars using APIs",
+//     technologies: ["pug", "Css", "node", "Js"],
+//     imageSrc: "/images/evm.svg",
+//     link: "/projects/weather",
+//     date: "March 2025",
+//   },
+//   {
+//     number: "05",
+//     title: "ANIMATION PROJECT",
+//     description: "Joyce's first coding project",
+//     technologies: ["Html", "Css", "Js"],
+//     imageSrc: "/images/animation.svg",
+//     link: "/projects/birdanimation",
+//     date: "Nov 2024",
+//   },
+// ];
 
 export default function Home() {
   // register and run animation on mount
@@ -81,26 +69,28 @@ export default function Home() {
     gsap.registerPlugin(ScrambleTextPlugin);
     gsap.to(".scramble", {
       duration: 1,
-      scrambleText: { text: "I am a full-stack developer + designer." },
+      scrambleText: { text: "Full Stack Developer+Designer" },
     });
   }, []);
 
   const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([]);
 
+  const allProjects = Object.entries(projects).map(([slug, project]) => ({
+    ...project,
+    slug,
+  }));
   const allTechnologies = [
-    ...new Set(projects.flatMap((project) => project.technologies)),
+    ...new Set(allProjects.flatMap((project) => project.technologies)),
   ];
-  const filteredProjects =
-    selectedTechnologies.length > 0
-      ? projects.filter((project) =>
-          project.technologies.some((tech) =>
-            selectedTechnologies.some(
-              (selectedTech) => tech.toLowerCase() === selectedTech.toLowerCase()
-            )
+  const filteredProjects = selectedTechnologies.length > 0
+    ? allProjects.filter((project) =>
+        project.technologies.some((tech) =>
+          selectedTechnologies.some(
+            (selectedTech) => tech.toLowerCase() === selectedTech.toLowerCase()
           )
         )
-      : projects;
-
+      )
+    : allProjects;
   return (
     <GSAPWrapper>
       <main>
@@ -133,7 +123,7 @@ export default function Home() {
             </Link>*/}
           </section>
           <section>
-            <HorizontalText />
+            <HorizontalScrollText />
           </section>
           <section className=" md:max-w-5xl mx-auto my-24">
           <div className="my-12 w-full bg-size-[0.7em] h-4 bg-repeat-x bg-size-[1.4em] md:bg-size-[2em] h-8 pattern-dot-three"></div>
@@ -198,7 +188,17 @@ export default function Home() {
             <TabsContent value="">
               <div className="grid grid-cols-1 gap-4">
                 {filteredProjects.map((project) => (
-                  <ProjectCard key={project.number} {...project} />
+                  <ProjectCard 
+                    key={project.number} 
+                    number={project.number}
+                    title={project.title}
+                    description={project.description}
+                    slug={project.slug}
+                    technologies={project.technologies}
+                    imageSrc={project.images?.[0] || project.videoUrl || ''}
+                    link={`/projects/${project.slug}`}
+                    date={project.date}
+                  />
                 ))}
               </div>
             </TabsContent>
@@ -206,7 +206,17 @@ export default function Home() {
               <TabsContent key={tech} value={tech}>
                 <div className="grid grid-cols-1 gap-4 ">
                   {filteredProjects.map((project) => (
-                    <ProjectCard key={project.number} {...project} />
+                    <ProjectCard 
+                      key={project.number} 
+                      number={project.number}
+                      title={project.title}
+                      description={project.description}
+                      slug={project.slug}
+                      technologies={project.technologies}
+                      imageSrc={project.images?.[0] || project.videoUrl || ''}
+                      link={`/projects/${project.slug}`}
+                      date={project.date}
+                    />
                   ))}
                 </div>
               </TabsContent>
