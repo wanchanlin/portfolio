@@ -79,9 +79,12 @@ export default function ContactForm() {
          
           <p className="opacity-80">
             Have a big idea or a brand to develop? Reach out—I'd love to hear about 
-            your project and see how I can help.
+            your project and see how we can work together.
           </p>
            <p className="text-xl font-bold my-4">Get in touch</p>
+          <p className="text-sm opacity-80 mb-4">
+            <b>Email</b>: <a href="mailto:ohanalin@gmail.com" className="hover:underline">ohanalin@gmail.com</a>
+          </p>
           <div className=" flex items-center gap-4">
             <Link href="https://github.com/wanchanlin" target="_blank" aria-label="GitHub">
               <FontAwesomeIcon icon={faGithub} className='text-4xl hover:text-[var(--retro-primary)] transition-colors'/>
