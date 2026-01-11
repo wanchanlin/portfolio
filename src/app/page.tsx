@@ -101,7 +101,7 @@ export default function Home() {
                 id="hero-text"
                 className="flex flex-col text-center  justify-between"
               >
-                <span className="text-3xl font-semibold text-[var(--foreground)]">
+                <span className="text-4xl font-semibold text-[var(--foreground)]">
                   Hi, I am Joyce
                 </span>
                 <br />
