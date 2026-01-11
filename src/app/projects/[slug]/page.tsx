@@ -73,7 +73,7 @@ export default function ProjectPage({ params }: PageProps) {
               </div>
             ) : project.images && project.images.length > 0 ? (
               <div>
-                {project.images.map((image, index) => (
+                {project.images.map((image: string, index: number) => (
                   <div key={index} className="relative h-64">
                     <img
                       src={image}
@@ -117,7 +117,7 @@ export default function ProjectPage({ params }: PageProps) {
           <p style={{ whiteSpace: "pre-line" }} className="text-left">{project.description}</p>
           <h2 className="text-[#67e242] text-center">Technology</h2>
             <div className="flex flex-row gap-4 mt-4 justify-center">
-              {project.technologies.map((tech, index) => (
+              {project.technologies.map((tech: string, index: number) => (
                 <div key={index}>
                   <Image
                     src={`/images/${tech}.svg`}
@@ -133,7 +133,7 @@ export default function ProjectPage({ params }: PageProps) {
           <div>
             <h2 className="text-[#67e242] text-center">Features</h2>
             <ul className="text-left">
-              {project.features.map((feature, index) => (
+              {project.features.map((feature: string, index: number) => (
                 <li key={index}>{feature}</li>
               ))}
             </ul>
@@ -143,7 +143,7 @@ export default function ProjectPage({ params }: PageProps) {
             <div>
               <h2 className="text-[#67e242] text-center">Member</h2>
               <div className="flex flex-wrap gap-4 mt-2">
-                {project.members.map((member, idx) => (
+                {project.members.map((member: { name: string; url: string }, idx: number) => (
                   <a
                     key={idx}
                     href={member.url}
