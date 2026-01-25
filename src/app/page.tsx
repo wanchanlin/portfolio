@@ -140,12 +140,14 @@ export default function Home() {
                   {filteredProjects.map((project, index) => (
                     <ProjectCard
                       key={project.slug}
-                      number={index + 1}
+                    
                       title={project.title}
                       description={project.description}
                       slug={project.slug}
                       technologies={project.technologies}
                       imageSrc={project.imageSrc}
+                      githubUrl={project.githubUrl}
+                      liveDemoUrl={project.liveDemoUrl}
                       link={`/projects/${project.slug}`}
                       date={new Date(project.date).toLocaleDateString()}
                     />

@@ -47,6 +47,19 @@ export const projectType = defineType({
         })
       ]
     }),
+   defineField({
+  name: 'gallery',
+  type: 'array',
+  title: 'Gallery Images',
+  of: [
+    {
+      type: 'image',
+      options: {
+        hotspot: true, // Enables the focal point selector
+      },
+    },
+  ],
+}),
     defineField({
       name: 'githubUrl',
       type: 'url',

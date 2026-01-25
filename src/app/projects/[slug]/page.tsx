@@ -6,11 +6,41 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { client } from "../../../sanity/lib/client";
+import { PortableText, PortableTextComponents } from "@portabletext/react";
+import ContactForm from "../../components/ContactForm"; // Fixed casing
+import { urlFor } from "../../../../src/sanity/lib/image";
 
-// Update PageProps to handle async params (Next.js 15 requirement)
+// --- Interfaces ---
+
+interface ProjectMember {
+  _id: string;
+  name: string;
+  imageUrl?: string;
+  bio?: any[];
+  slug: {
+    current: string;
+  };
+}
+
+interface Project {
+  title: string;
+  description: string;
+  slug: string;
+  technologies: string[];
+  images?: string[];
+  features?: string[];
+  demo?: string;
+  github?: string;
+  videoUrl?: string;
+  content?: any[];
+  members?: ProjectMember[];
+}
+
 type PageProps = { params: Promise<{ slug: string }> };
 
-async function getProject(slug: string) {
+// --- Data Fetching ---
+
+async function getProject(slug: string): Promise<Project | null> {
   const query = `*[_type == "project" && slug.current == $slug][0]{
     title,
     description,
@@ -21,14 +51,20 @@ async function getProject(slug: string) {
     "demo": liveDemoUrl,
     "github": githubUrl,
     videoUrl,
-    members
+    content,
+    members[]->{
+      _id,
+      name,
+      "imageUrl": image.asset->url,
+      bio,
+      slug
+    }
   }`;
-  // Revalidate ensures your page updates after you edit content in Sanity
   return await client.fetch(query, { slug }, { next: { revalidate: 60 } });
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params; // Await params
+  const { slug } = await params;
   const project = await getProject(slug);
   return {
     title: project?.title ? `${project.title} | Portfolio` : "Project Not Found",
@@ -36,9 +72,37 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+// --- Component ---
+
 export default async function ProjectPage({ params }: PageProps) {
-  const { slug } = await params; // Await params
+  const { slug } = await params;
   const project = await getProject(slug);
+
+  const components: PortableTextComponents = {
+    block: {
+      normal: ({ children }) => <p className="mb-4">{children}</p>,
+      h2: ({ children }) => <h2 className="text-2xl font-bold mt-8 mb-4 text-[#67e242]">{children}</h2>,
+      h3: ({ children }) => <h3 className="text-xl font-semibold mt-6 mb-3">{children}</h3>,
+    },
+    list: {
+      bullet: ({ children }) => <ul className="list-disc pl-5 space-y-2 mb-4">{children}</ul>,
+    },
+    marks: {
+      link: ({ value, children }) => {
+        const target = (value?.href || '').startsWith('http') ? '_blank' : undefined;
+        return (
+          <a 
+            href={value?.href} 
+            target={target}
+            rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+            className="text-[#67e242] hover:underline"
+          >
+            {children}
+          </a>
+        );
+      },
+    },
+  };
 
   if (!project) {
     return (
@@ -52,130 +116,149 @@ export default async function ProjectPage({ params }: PageProps) {
   }
 
   return (
-    <main className="max-w-[1000px] mt-[100px] mx-auto w-full px-4 mb-20">
-      {/* Header */}
-      <div className="flex items-center justify-center relative mb-12">
-        <Link 
-          href="/" 
-          className="absolute left-0 text-[var(--foreground)] text-2xl p-2 hover:text-[#67e242] transition-colors"
-          aria-label="Back to home"
-        >
-          <FontAwesomeIcon icon={faChevronLeft} />
-        </Link>
-        <h1 className="text-[#67e242] text-center text-4xl font-bold tracking-tight">
-          {project.title}
-        </h1>
-      </div>
+    <>
+      <main className="max-w-[1000px] mt-[100px] mx-auto w-full px-4 mb-20">
+        {/* Header */}
+        <div className="flex items-center justify-center relative mb-12">
+          <Link 
+            href="/" 
+            className="absolute left-0 text-[var(--foreground)] text-2xl p-2 hover:text-[#67e242] transition-colors"
+            aria-label="Back to home"
+          >
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </Link>
+          <h1 className="text-[#67e242] text-center text-4xl font-bold tracking-tight">
+            {project.title}
+          </h1>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        {/* Left Column: Media & Links */}
-        <div className="flex flex-col gap-8">
-          <div className="media-container">
-            {project.videoUrl ? (
-              <div className="relative w-full pb-[56.25%] overflow-hidden rounded-lg shadow-xl">
-                <iframe
-                  className="absolute top-0 left-0 w-full h-full border-0"
-                  src={project.videoUrl}
-                  title="Project Video"
-                  allowFullScreen
-                />
-              </div>
-            ) : (
-              <div className="flex flex-col gap-6">
-                {project.images?.map((img: string, idx: number) => (
-                  <div key={idx} className="relative w-full aspect-video group overflow-hidden rounded-lg border border-white/10">
-                    <img
-                      src={img}
-                      alt={`${project.title} preview ${idx + 1}`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        {/* Content Grid */} 
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          
+          {/* Left Column: Media */}
+          <div className="flex flex-col gap-8">
+            <div className="media-container">
+              {project.videoUrl ? (
+                <div className="relative w-full pb-[56.25%] overflow-hidden rounded-lg shadow-xl">
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full border-0"
+                    src={project.videoUrl}
+                    title="Project Video"
+                    allowFullScreen
+                  />
+                </div>
+              ) : (
+                <div className="flex flex-col gap-6">
+                  {project.images?.map((img: string, idx: number) => (
+                    <div key={idx} className="relative w-full aspect-video group overflow-hidden rounded-lg border border-white/10">
+                      <Image
+                        src={img}
+                        alt={`${project.title} preview ${idx + 1}`}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="flex flex-wrap gap-4 justify-center">
+              {project.github && (
+                <Link href={project.github} target="_blank" className="gap-2 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg hover:bg-[var(--retro-primary)] hover:text-[var(--retro-bg)] transition-all font-bold">
+                  GitHub <FontAwesomeIcon icon={faGithub} />
+                </Link>
+              )}
+              {project.demo && (
+                <Link href={project.demo} target="_blank" className="gap-2 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg hover:bg-[var(--retro-primary)] hover:text-[var(--retro-bg)] transition-all font-bold">
+                  Live Demo <FontAwesomeIcon icon={faLaptopCode} />
+                </Link>
+              )}
+            </div>
+          </div>
+
+          {/* Right Column: Details */}
+          <div className="md:px-8 md:border-l-2 border-[#67e242]/30 flex flex-col gap-10">
+            <section>
+              <h2 className="text-[#67e242] text-2xl font-mono mb-4 flex items-center gap-2">
+                <span className="opacity-50 text-sm">01.</span> STACK
+              </h2>
+              <div className="flex flex-wrap gap-6 justify-start">
+                {project.technologies?.map((tech: string, idx: number) => (
+                  <div key={idx} title={tech} className="hover:scale-110 transition-transform">
+                    <Image 
+                      src={`/images/${tech.toLowerCase()}.svg`} 
+                      alt={tech} 
+                      width={45} 
+                      height={45} 
+                      className="drop-shadow-[0_0_8px_rgba(103,226,66,0.3)]"
                     />
                   </div>
                 ))}
               </div>
-            )}
-          </div>
-
-          <div className="flex flex-wrap gap-4 justify-center">
-            {project.github && (
-              <Link href={project.github} target="_blank" className="gap-2 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg hover:bg-[var(--retro-primary)] hover:text-[var(--retro-bg)] transition-all font-bold">
-                GitHub <FontAwesomeIcon icon={faGithub} />
-              </Link>
-            )}
-            {project.demo && (
-              <Link href={project.demo} target="_blank" className="gap-2 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg hover:bg-[var(--retro-primary)] hover:text-[var(--retro-bg)] transition-all font-bold">
-                Live Demo <FontAwesomeIcon icon={faLaptopCode} />
-              </Link>
-            )}
-          </div>
-        </div>
-
-        {/* Right Column: Details */}
-        <div className="md:px-8 md:border-l-2 border-[#67e242]/30 flex flex-col gap-10">
-          <section>
-            <h2 className="text-[#67e242] text-xl font-mono mb-4 flex items-center gap-2">
-              <span className="opacity-50 text-sm">01.</span> ABOUT
-            </h2>
-            <p className="whitespace-pre-line text-[var(--foreground)] leading-relaxed">
-              {project.description}
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-[#67e242] text-xl font-mono mb-4 flex items-center gap-2">
-              <span className="opacity-50 text-sm">02.</span> STACK
-            </h2>
-            <div className="flex flex-wrap gap-6 justify-start grayscale hover:grayscale-0 transition-all">
-              {project.technologies?.map((tech: string, idx: number) => (
-                <div key={idx} title={tech} className="hover:scale-110 transition-transform">
-                  <Image 
-                    src={`/images/${tech.toLowerCase()}.svg`} 
-                    alt={tech} 
-                    width={45} 
-                    height={45} 
-                    className="drop-shadow-[0_0_8px_rgba(103,226,66,0.3)]"
-                  />
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {project.features && (
-            <section>
-              <h2 className="text-[#67e242] text-xl font-mono mb-4 flex items-center gap-2">
-                <span className="opacity-50 text-sm">03.</span> FEATURES
-              </h2>
-              <ul className="grid grid-cols-1 gap-2">
-                {project.features.map((feature: string, idx: number) => (
-                  <li key={idx} className="flex items-start gap-2 text-sm">
-                    <span className="text-[#67e242] mt-1">▹</span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
             </section>
-          )}
 
-          {project.members && project.members.length > 0 && (
             <section>
-              <h2 className="text-[#67e242] text-xl font-mono mb-4 flex items-center gap-2">
-                <span className="opacity-50 text-sm">04.</span> TEAM
+              <h2 className="text-[#67e242] text-2xl font-mono mb-4 flex items-center gap-2">
+                <span className="opacity-50 text-sm">02.</span> ABOUT
               </h2>
-              <div className="flex flex-wrap gap-3">
-                {project.members.map((member: any, idx: number) => (
-                  <a 
-                    key={idx} 
-                    href={member.url} 
-                    target="_blank" 
-                    className="py-1.5 px-4 text-xs border border-[#67e242] rounded-full hover:bg-[#67e242] hover:text-black transition-all font-medium"
-                  >
-                    @{member.name}
-                  </a>
-                ))}
+              <div className="prose max-w-none text-[var(--foreground)]">
+                <PortableText value={project.content} components={components} />
               </div>
             </section>
-          )}
-        </div>
-      </div>
-    </main>
+
+            {project.features && project.features.length > 0 && (
+              <section>
+                <h2 className="text-[#67e242] text-2xl font-mono mb-4 flex items-center gap-2">
+                  <span className="opacity-50 text-sm">03.</span> FEATURES
+                </h2>
+                <ul className="list-disc pl-5 space-y-2">
+                  {project.features.map((feature, i) => (
+                    <li key={i} className="text-[var(--foreground)]">{feature}</li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
+            {/* Team Members */}
+            {project.members && project.members.length > 0 && (
+              <section className="mt-4">
+                <h2 className="text-[#67e242] text-2xl font-mono mb-6">
+                   <span className="opacity-50 text-sm">04.</span> TEAM
+                </h2>
+                <div className="grid grid-cols-1 gap-6">
+                  {project.members.map((member) => (
+                    <div key={member._id} className="bg-white/5 p-4 rounded-lg flex items-center gap-4">
+                      {member.imageUrl && (
+                        <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#67e242] shrink-0">
+                          <Image
+                            src={member.imageUrl}
+                            alt={member.name}
+                            width={64}
+                            height={64}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      )}
+                      <div>
+                        <h3 className="text-lg font-semibold">{member.name}</h3>
+                        {member.bio && (
+                          <div className="text-xs text-gray-400">
+                            <PortableText value={member.bio} />
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
+        </div>|
+
+        <section className="mt-20"><ContactForm /></section>
+      </main>
+      
+    </>
   );
 }
