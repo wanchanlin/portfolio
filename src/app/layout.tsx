@@ -5,11 +5,11 @@ import './globals.css'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
-// import '~/css/style.css'
 
-import Navigation from './components/Navigation'
+
+
 import Navigation2 from './components/Navigation2'
-import Footer from './components/Footer'
+
 import Footer2 from "./components/Footer2";
 import { ThemeProvider } from './components/ThemeProvider'
 import GoogleAnalytics from './components/GoogleAnalytics'
@@ -37,16 +37,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Wanchan Website',
-    description: 'Full-stack developer and designer portfolio',
-    images: ['/twitter-image.jpg'],
-  },
-  other: {
-    'msapplication-TileImage': 'images/stile-144x144.png',
-    'apple-touch-icon': '/apple-touch-icon.png',
-  },
+ 
 }
 
 export default function RootLayout({
