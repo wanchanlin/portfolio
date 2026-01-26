@@ -17,7 +17,7 @@
     "@next/third-parties": "^15.3.2",
     "@portabletext/react": "^6.0.2",
     "@radix-ui/react-tabs": "^1.1.12",
-    "@sanity/client": "^6.12.1",
+    "@sanity/client": "^7.14.1",
     "@sanity/vision": "^3.11.0",
     "@types/node": "^20.11.19",
     "@types/react": "^18.2.57",

@@ -21,8 +21,8 @@ export const projectType = defineType({
       validation: Rule => Rule.required()
     }),
     defineField({
-      name: 'displaydate',
-      type: 'date',
+      name: 'completionDate',
+      type: 'Completion Date',
       title: 'Display Date',
     }),
     defineField({
