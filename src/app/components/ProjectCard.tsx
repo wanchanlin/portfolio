@@ -17,7 +17,7 @@ interface ProjectCardProps {
   technologies: string[];
   imageSrc: string;
   link: string;
-  date?: string;
+ displaydate?: Date;
 }
 
 export default function ProjectCard({
@@ -28,15 +28,32 @@ export default function ProjectCard({
   slug,
   imageSrc,
   link,
-  date
+  displaydate
 }: ProjectCardProps) {
+ // LOG THIS: To see if Sanity is actually sending the right string
+  // console.log("Date received for " + title + ":", date);
+
+const formattedDate = React.useMemo(() => {
+  if (!displaydate || displaydate === 'Ongoing') return 'Ongoing';
+  
+  const parsedDate = new Date(displaydate as string);
+  if (isNaN(parsedDate.getTime())) return 'Ongoing';
+
+  return parsedDate.toLocaleDateString('en-US', { 
+    month: 'long', 
+    year: 'numeric' 
+  });
+}, [displaydate]);
+
   return (
     
       <div className='flex flex-col gap-4 md:grid md:grid-cols-2 items-center justify-center px-4 py-8'  >
         
         <div className='flex flex-col gap-2'>
           <div>{number}</div>
-          <p className='text-sm'>{date}</p>
+         <p className='text-sm opacity-60 uppercase tracking-widest'>
+            {formattedDate}
+          </p>
           {/* <p className='text-2xl font-bold'>{title}</p> */}
            <p className="text-3xl font-bold">{title}</p>
 

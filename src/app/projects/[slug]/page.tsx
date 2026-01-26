@@ -254,9 +254,12 @@ export default async function ProjectPage({ params }: PageProps) {
               </section>
             )}
           </div>
-        </div>|
+        </div>
 
-        <section className="mt-20"><ContactForm /></section>
+        <section className="mt-20">
+        <div className="my-12 w-full bg-size-[0.7em] h-4 bg-repeat-x pattern-dot-three"></div>
+          <ContactForm />
+        </section>
       </main>
       
     </>
