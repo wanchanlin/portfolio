@@ -1,27 +1,29 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo, useRef } from "react";
 import ProjectCard from "./components/ProjectCard";
 import ContactForm from "./components/ContactForm";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import GSAPWrapper from "./components/GSAPWrapper";
 import { gsap } from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
+import { useGSAP } from "@gsap/react"; 
 import BinaryGrid from "./components/BinaryGrid";
 import HorizontalScrollText from "./components/HorizontalText";
 import { client } from "../sanity/lib/client";
 
+// Register outside the component
+gsap.registerPlugin(ScrambleTextPlugin);
+
 export default function Home() {
-  // --- 1. State Management ---
   const [projects, setProjects] = useState<any[]>([]);
   const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const container = useRef(null);
 
-  // --- 2. Data Fetching & Animations ---
+  // 1. Fetch Projects
   useEffect(() => {
     async function fetchProjects() {
       try {
-        // Corrected GROQ query with fix for the date fallback
         const data = await client.fetch(`*[_type == "project"] | order(displaydate desc) {
           title,
           "slug": slug.current,
@@ -39,37 +41,37 @@ export default function Home() {
         setLoading(false);
       }
     }
-
     fetchProjects();
-
-    // GSAP Scramble Animation
-    gsap.registerPlugin(ScrambleTextPlugin);
-    gsap.to(".scramble", {
-      duration: 1.5,
-      scrambleText: { 
-        text: "Full Stack Developer + Designer",
-        chars: "01",
-        revealDelay: 0.5 
-      },
-    });
   }, []);
 
-  // --- 3. Filtering Logic ---
-  const allTechnologies = [
-    ...new Set(projects.flatMap((project) => project.technologies || [])),
-  ];
+  // 2. Filter Logic (Memoized)
+  const allTechnologies = useMemo(() => {
+    return [...new Set(projects.flatMap((p) => p.technologies || []))].sort();
+  }, [projects]);
 
-  const filteredProjects = selectedTechnologies.length > 0
-    ? projects.filter((project) =>
-        project.technologies?.some((tech: string) =>
-          selectedTechnologies.some(
-            (selectedTech) => tech.toLowerCase() === selectedTech.toLowerCase()
-          )
-        )
-      )
-    : projects;
+  const filteredProjects = useMemo(() => {
+    if (selectedTechnologies.length === 0) return projects;
+    return projects.filter((project) =>
+      project.technologies?.some((tech: string) => selectedTechnologies.includes(tech))
+    );
+  }, [projects, selectedTechnologies]);
 
-  // --- 4. Render Loading State ---
+  // 3. GSAP Animation Logic
+  useGSAP(() => {
+    if (!loading) {
+      gsap.to(".scramble", {
+        duration: 1.5,
+        scrambleText: {
+          text: "Full Stack Developer + Designer",
+          chars: "01",
+          revealDelay: 0.5,
+        },
+        ease: "power3.out",
+      });
+    }
+  }, { scope: container, dependencies: [loading] });
+
+  // 4. Loading State
   if (loading) {
     return (
       <div className="h-screen flex items-center justify-center bg-[var(--background)]">
@@ -80,99 +82,102 @@ export default function Home() {
     );
   }
 
+  // 5. Main Render
   return (
     <GSAPWrapper>
-      <main>
-        <div className="px-4">
-          {/* Hero Section */}
-          <section className="mx-auto max-w-5xl min-h-[60vh] mt-24 flex flex-col justify-between">
-            <div id="hero-text" className="flex flex-col text-center">
-              <span className="text-4xl font-semibold text-[var(--foreground)]">
-                Hi, I am Joyce
+      <main ref={container} className="px-4">
+        {/* Hero Section */}
+        <section className="mx-auto max-w-5xl min-h-[60vh] mt-24 flex flex-col justify-between">
+          <div id="hero-text" className="flex flex-col text-center">
+            <span className="text-4xl font-semibold text-[var(--foreground)]">
+              Hi, I am Joyce
+            </span>
+            <div className="mt-4 flex items-center justify-center">
+              <span className="scramble md:text-7xl text-4xl font-semibold text-[var(--foreground)]">
+                |
               </span>
-              <div className="h-20 flex items-center justify-center">
-                <span className="scramble md:text-7xl text-4xl font-semibold text-[var(--foreground)]">
-                  {" "}<span className="animate-[blink_1s_step-end_infinite]">|</span>
-                </span>
-              </div>
             </div>
-            <div className="w-full py-12">
-              <BinaryGrid />
-            </div>
-          </section>
+          </div>
+          <div className="w-full">
+            <BinaryGrid />
+          </div>
+        </section>
 
-          {/* Marquee Section */}
-          <section>
-            <HorizontalScrollText />
-          </section>
+        <section>
+          <HorizontalScrollText />
+        </section>
 
-          {/* Projects Section */}
-          <section className="md:max-w-5xl mx-auto my-24">
-            <div className="my-12 w-full bg-size-[0.7em] h-4 bg-repeat-x pattern-dot-three opacity-30"></div>
-            
-            <h2 id="projects" className="text-[1.6rem] text-center font-semibold text-[var(--foreground)] mb-8">
-              {`{ PROJECTS }`}
-            </h2>
+        {/* Projects Section */}
+        <section id="projects" className="md:max-w-5xl mx-auto my-24">
+          <div className="my-12 w-full bg-size-[0.7em] h-4 bg-repeat-x pattern-dot-three opacity-30"></div>
+          
+          <h2 className="text-[1.6rem] text-center font-semibold text-[var(--foreground)] mb-8">
+            {`{ PROJECTS }`}
+          </h2>
 
-            <Tabs defaultValue="all" className="w-full">
-              <TabsList className="grid md:grid-cols-6 grid-cols-3 gap-4 p-2 mb-12">
-                <TabsTrigger
-                  value="all"
-                  onClick={() => setSelectedTechnologies([])}
-                  className={`gap-2 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg transition-all font-bold 
-                    ${selectedTechnologies.length === 0 ? "bg-[var(--retro-primary)] text-[var(--retro-bg)]" : "text-[var(--retro-primary)]"}`}
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap gap-4 p-2 mb-12 justify-center">
+            <button
+              onClick={() => setSelectedTechnologies([])}
+              className={`px-6 py-2 rounded-pixel-lg border-2 border-[var(--retro-primary)] transition-all font-bold 
+                ${selectedTechnologies.length === 0 
+                  ? "bg-[var(--retro-primary)] text-[var(--retro-bg)]" 
+                  : "text-[var(--retro-primary)] hover:bg-[var(--retro-primary)]/10"
+                }`}
+            >
+              All ({projects.length})
+            </button>
+
+            {allTechnologies.map((tech) => {
+              const isSelected = selectedTechnologies.includes(tech);
+              return (
+                <button
+                  key={tech}
+                  onClick={() => {
+                    setSelectedTechnologies((prev) =>
+                      isSelected ? prev.filter((t) => t !== tech) : [...prev, tech]
+                    );
+                  }}
+                  className={`px-4 py-2 rounded-pixel-lg border-2 border-[var(--retro-primary)] transition-all font-bold 
+                    ${isSelected 
+                      ? "bg-[var(--retro-primary)] text-[var(--retro-bg)] shadow-[4px_4px_0px_var(--foreground)]" 
+                      : "text-[var(--retro-primary)] hover:bg-[var(--retro-primary)]/10"
+                    }`}
                 >
-                  All ({projects.length})
-                </TabsTrigger>
+                  {tech}
+                  {isSelected && <span className="ml-2 text-xs">×</span>}
+                </button>
+              );
+            })}
+          </div>
 
-                {allTechnologies.map((tech) => (
-                  <TabsTrigger
-                    key={tech}
-                    value={tech}
-                    onClick={() => {
-                      setSelectedTechnologies((prev) =>
-                        prev.includes(tech) ? prev.filter((t) => t !== tech) : [...prev, tech]
-                      );
-                    }}
-                    className={`gap-2 flex items-center border-2 border-[var(--retro-primary)] px-4 py-2 rounded-pixel-lg transition-all font-bold
-                      ${selectedTechnologies.includes(tech) ? "bg-[var(--retro-primary)] text-[var(--retro-bg)]" : "text-[var(--retro-primary)]"}`}
-                  >
-                    {tech}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
+          {/* Project Grid */}
+          <div className="grid grid-cols-1 gap-12 min-h-[400px]">
+            {filteredProjects.length > 0 ? (
+              filteredProjects.map((project, index) => (
+                <ProjectCard
+                  key={project.slug}
+                  number={(index + 1).toString().padStart(2, '0')}
+                  {...project}
+                  link={`/projects/${project.slug}`}
+                />
+              ))
+            ) : (
+              <div className="text-center py-20 opacity-50 font-mono">
+                &gt; NO_MATCHING_PROJECTS_FOUND
+              </div>
+            )}
+          </div>
+        </section>
 
-              <TabsContent value="all" className="mt-4 focus:outline-none">
-                <div className="grid grid-cols-1 gap-12">
-                  {filteredProjects.map((project) => (
-                    <ProjectCard
-                      key={project.slug}
-                      title={project.title}
-                      description={project.description}
-                      slug={project.slug}
-                      technologies={project.technologies}
-                      imageSrc={project.imageSrc}
-                      githubUrl={project.githubUrl}
-                      liveDemoUrl={project.liveDemoUrl}
-                      link={`/projects/${project.slug}`}
-                      // Pass the resolved date (either the date string or "Ongoing")
-                      displaydate={project.displaydate}
-                    />
-                  ))}
-                </div>
-              </TabsContent>
-            </Tabs>
-          </section>
-
-          {/* Contact Section */}
-          <section className="md:max-w-5xl mx-auto my-24">
-            <div className="my-12 w-full bg-size-[0.7em] h-4 bg-repeat-x pattern-dot-three opacity-30"></div>
-            <h2 id="contact" className="text-[1.6rem] text-center font-semibold text-[var(--foreground)] mb-8">
-              {`{ CONTACT }`}
-            </h2>
-            <ContactForm />
-          </section>
-        </div>
+        {/* Contact Section */}
+        <section id="contact" className="md:max-w-5xl mx-auto my-24">
+          <div className="my-12 w-full bg-size-[0.7em] h-4 bg-repeat-x pattern-dot-three opacity-30"></div>
+          <h2 className="text-[1.6rem] text-center font-semibold text-[var(--foreground)] mb-8">
+            {`{ CONTACT }`}
+          </h2>
+          <ContactForm />
+        </section>
       </main>
     </GSAPWrapper>
   );

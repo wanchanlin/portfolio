@@ -114,7 +114,7 @@ const BinaryGrid = () => {
   };
 
   return (
-    <div className="flex h-svh w-full items-center justify-center overflow-hidden select-none">
+    <div className="flex my-8 h-fit w-full items-center justify-center overflow-hidden select-none">
       <div ref={containerRef} className="flex flex-col gap-4">
         {Array.from({ length: xMax }).map((_, rowIndex) => (
           <div key={rowIndex} className="flex gap-4">
