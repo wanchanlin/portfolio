@@ -1,11 +1,10 @@
-import {TagIcon} from '@sanity/icons'
-import {defineField, defineType} from 'sanity'
+import {defineField, defineType, defineArrayMember} from 'sanity'
+import {BlockContentNormalizingInput} from './BlockContentNormalizingInput'
 
 export const projectType = defineType({
   name: 'project',
   title: 'Project',
   type: 'document',
-  icon: TagIcon,
   fields: [
     defineField({
       name: 'title',
@@ -37,29 +36,29 @@ export const projectType = defineType({
       title: 'Project Image',
       options: {
         hotspot: true,
+        fields: [
+          defineField({
+            name: 'alt',
+            type: 'string',
+            title: 'Alternative text',
+            validation: Rule => Rule.required()
+          })
+        ]
       },
-      fields: [
-        defineField({
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text',
-          validation: Rule => Rule.required()
-        })
-      ]
     }),
-   defineField({
-  name: 'gallery',
-  type: 'array',
-  title: 'Gallery Images',
-  of: [
     {
-      type: 'image',
-      options: {
-        hotspot: true, // Enables the focal point selector
-      },
+      name: 'gallery',
+      type: 'array',
+      title: 'Gallery Images',
+      of: [
+        defineArrayMember({
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        }),
+      ],
     },
-  ],
-}),
     defineField({
       name: 'githubUrl',
       type: 'url',
@@ -70,16 +69,23 @@ export const projectType = defineType({
       type: 'url',
       title: 'Live Demo URL',
     }),
-    defineField({
+    {
       name: 'technologies',
       type: 'array',
       title: 'Technologies Used',
-      of: [{type: 'string'}],
-    }),
+      of: [
+        defineArrayMember({
+          type: 'string',
+        })
+      ],
+    },
     defineField({
       name: 'content',
       type: 'blockContent',
       title: 'Project Details',
+      components: {
+        input: BlockContentNormalizingInput,
+      },
     }),
   ],
   preview: {

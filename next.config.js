@@ -1,39 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Disable source maps in production
-  productionBrowserSourceMaps: false,
-  
-  // Optimize package imports
-  experimental: {
-    esmExternals: 'loose'
-  },
-
-  // Webpack configuration - removed devtool modification
-  webpack: (config, { isServer, dev }) => {
-    // Add any necessary webpack configurations here
-    // without modifying devtool in development
-    return config;
-  },
-  
-  // Enable React strict mode
-  reactStrictMode: true,
-  
-  // Enable SWC minification
-  swcMinify: true,
-  
-  // Add output file tracing for better deployment
-  output: 'standalone',
-  
-  // Add images configuration
+  // Disable Strict Mode to avoid PT editor double-mount and "Cannot resolve a DOM node from Slate node"
+  reactStrictMode: false,
+  transpilePackages: ['@sanity', 'next-sanity', 'react-syntax-highlighter'],
   images: {
     domains: ['cdn.sanity.io'],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
-  }
-};
+  },
+  experimental: {
+    serverComponentsExternalPackages: ['@sanity/vision'],
+  },
+  // Add this to handle ESM packages
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false, net: false, tls: false }
+    return config
+  },
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

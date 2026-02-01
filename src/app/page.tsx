@@ -10,6 +10,7 @@ import { useGSAP } from "@gsap/react";
 import BinaryGrid from "./components/BinaryGrid";
 import HorizontalScrollText from "./components/HorizontalText";
 import { client } from "../sanity/lib/client";
+// import { sanityFetch } from "../sanity/lib/live";
 
 // Register outside the component
 gsap.registerPlugin(ScrambleTextPlugin);

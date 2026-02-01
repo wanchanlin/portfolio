@@ -1,46 +1,26 @@
-import {UserIcon} from '@sanity/icons'
-import {defineArrayMember, defineField, defineType} from 'sanity'
+// schemas/author.ts
+import { defineType, defineField } from 'sanity'
 
-export const authorType = defineType({
+export default defineType({
   name: 'author',
   title: 'Author',
   type: 'document',
-  icon: UserIcon,
   fields: [
     defineField({
       name: 'name',
+      title: 'Name',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
+      title: 'Slug',
       type: 'slug',
       options: {
         source: 'name',
+        maxLength: 96,
       },
-    }),
-    defineField({
-      name: 'image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
-      name: 'bio',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
-          lists: [],
-        }),
-      ],
+      validation: (Rule) => Rule.required(),
     }),
   ],
-  preview: {
-    select: {
-      title: 'name',
-      media: 'image',
-    },
-  },
 })

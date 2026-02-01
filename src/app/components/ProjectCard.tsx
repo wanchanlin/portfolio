@@ -60,10 +60,10 @@ export default function ProjectCard({
         </h3>
 
         <div className="flex flex-wrap gap-3 mt-2 mb-4 justify-start">
-          {technologies.map((tech) => (
+          {(technologies || []).filter((t): t is string => typeof t === 'string').map((tech) => (
             <div key={tech} className="relative group">
                <Image
-                src={`/images/${tech.toLowerCase()}.svg`} // Ensure lowercase matches file names
+                src={`/images/${tech.toLowerCase()}.svg`}
                 alt={tech}
                 width={32}
                 height={32}
@@ -92,12 +92,16 @@ export default function ProjectCard({
 
       {/* Project Image */}
       <div className="w-full aspect-video overflow-hidden rounded-lg border border-white/5 bg-white/5">
-        <img
-          src={imageSrc}
-          alt={`Preview of ${title}`}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-          loading="lazy"
-        />
+        {imageSrc ? (
+          <img
+            src={imageSrc}
+            alt={`Preview of ${title}`}
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-[var(--foreground)]/40 text-sm" aria-hidden>No image</div>
+        )}
       </div>
     </div>
   )

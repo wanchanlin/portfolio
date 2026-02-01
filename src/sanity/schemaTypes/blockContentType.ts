@@ -1,5 +1,7 @@
 import {defineType, defineArrayMember} from 'sanity'
 import {ImageIcon} from '@sanity/icons'
+import {BlockContentNormalizingInput} from './BlockContentNormalizingInput'
+import {BLOCK_CONTENT_INITIAL} from './blockContentInitial'
 
 /**
  * This is the schema type for block content used in the post document type
@@ -12,10 +14,16 @@ import {ImageIcon} from '@sanity/icons'
  *  }
  */
 
+export {BLOCK_CONTENT_INITIAL} from './blockContentInitial'
+
 export const blockContentType = defineType({
   title: 'Block Content',
   name: 'blockContent',
   type: 'array',
+  initialValue: BLOCK_CONTENT_INITIAL,
+  components: {
+    input: BlockContentNormalizingInput,
+  },
   of: [
     defineArrayMember({
       type: 'block',
@@ -23,38 +31,40 @@ export const blockContentType = defineType({
       // set corresponds with HTML tags, but you can set any title or value
       // you want, and decide how you want to deal with it where you want to
       // use your content.
-      styles: [
-        {title: 'Normal', value: 'normal'},
-        {title: 'H1', value: 'h1'},
-        {title: 'H2', value: 'h2'},
-        {title: 'H3', value: 'h3'},
-        {title: 'H4', value: 'h4'},
-        {title: 'Quote', value: 'blockquote'},
-      ],
-      lists: [{title: 'Bullet', value: 'bullet'}],
-      // Marks let you mark up inline text in the Portable Text Editor
-      marks: {
-        // Decorators usually describe a single property – e.g. a typographic
-        // preference or highlighting
-        decorators: [
-          {title: 'Strong', value: 'strong'},
-          {title: 'Emphasis', value: 'em'},
+      options: {
+        styles: [
+          {title: 'Normal', value: 'normal'},
+          {title: 'H1', value: 'h1'},
+          {title: 'H2', value: 'h2'},
+          {title: 'H3', value: 'h3'},
+          {title: 'H4', value: 'h4'},
+          {title: 'Quote', value: 'blockquote'},
         ],
-        // Annotations can be any object structure – e.g. a link or a footnote.
-        annotations: [
-          {
-            title: 'URL',
-            name: 'link',
-            type: 'object',
-            fields: [
-              {
-                title: 'URL',
-                name: 'href',
-                type: 'url',
-              },
-            ],
-          },
-        ],
+        lists: [{title: 'Bullet', value: 'bullet'}],
+        // Marks let you mark up inline text in the Portable Text Editor
+        marks: {
+          // Decorators usually describe a single property – e.g. a typographic
+          // preference or highlighting
+          decorators: [
+            {title: 'Strong', value: 'strong'},
+            {title: 'Emphasis', value: 'em'},
+          ],
+          // Annotations can be any object structure – e.g. a link or a footnote.
+          annotations: [
+            {
+              title: 'URL',
+              name: 'link',
+              type: 'object',
+              fields: [
+                {
+                  title: 'URL',
+                  name: 'href',
+                  type: 'url',
+                },
+              ],
+            },
+          ],
+        },
       },
     }),
     // You can add additional types here. Note that you can't use
@@ -62,15 +72,16 @@ export const blockContentType = defineType({
     // as a block type.
     defineArrayMember({
       type: 'image',
-      icon: ImageIcon,
-      options: {hotspot: true},
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text',
-        }
-      ]
+      options: {
+        hotspot: true,
+        fields: [
+          {
+            name: 'alt',
+            type: 'string',
+            title: 'Alternative Text',
+          }
+        ]
+      },
     }),
   ],
 })

@@ -8,7 +8,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { client } from "../../../sanity/lib/client";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import ContactForm from "../../components/ContactForm"; // Fixed casing
-import { urlFor } from "../../../../src/sanity/lib/image";
+import { urlFor } from "../../../sanity/lib/image";
 
 // --- Interfaces ---
 
@@ -149,7 +149,9 @@ export default async function ProjectPage({ params }: PageProps) {
                 </div>
               ) : (
                 <div className="flex flex-col gap-6">
-                  {project.images?.map((img: string, idx: number) => (
+                  {project.images
+                    ?.filter((img): img is string => typeof img === 'string' && img.length > 0)
+                    ?.map((img: string, idx: number) => (
                     <div key={idx} className="relative w-full aspect-video group overflow-hidden rounded-lg border border-white/10">
                       <Image
                         src={img}
