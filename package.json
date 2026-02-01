@@ -66,6 +66,9 @@
     },
     "@sanity/ui": {
       "react-is": "^18.2.0"
+    },
+    "@sanity/preview-kit": {
+      "@sanity/client": "^7.14.1"
     }
   }
 }
