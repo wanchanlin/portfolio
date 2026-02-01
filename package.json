@@ -58,10 +58,11 @@
     "@sanity/portable-text-editor": {
       "styled-components": "^6.1.8"
     },
-    "next-sanity": {
+    "sanity": {
+      "styled-components": "^6.1.8",
       "@sanity/icons": "^2.11.8"
     },
-    "sanity": {
+    "next-sanity": {
       "@sanity/icons": "^2.11.8"
     },
     "@sanity/preview-kit": {
