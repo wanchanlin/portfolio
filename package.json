@@ -63,6 +63,9 @@
     },
     "sanity": {
       "@sanity/icons": "^2.11.8"
+    },
+    "@sanity/ui": {
+      "react-is": "^18.2.0"
     }
   }
 }
