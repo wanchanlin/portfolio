@@ -7,7 +7,7 @@ import { faChevronLeft, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { client } from "../../../sanity/lib/client";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
-import ContactForm from "../../components/ContactForm"; // Fixed casing
+import ContactForm from "../../components/ContactForm"; 
 import { urlFor } from "../../../sanity/lib/image";
 
 // --- Interfaces ---
@@ -20,9 +20,11 @@ interface ProjectMember {
   slug: {
     current: string;
   };
+  imageSrc?: string;
 }
 
 interface Project {
+  imageSrc?: string;
   title: string;
   description: string;
   slug: string;
@@ -46,6 +48,7 @@ async function getProject(slug: string): Promise<Project | null> {
     description,
     "slug": slug.current,
     technologies,
+    "imageSrc": mainImage.asset->url, 
     "images": gallery[].asset->url,
     features,
     "demo": liveDemoUrl,
@@ -164,7 +167,18 @@ export default async function ProjectPage({ params }: PageProps) {
                 </div>
               )}
             </div>
-
+              <div className="w-full aspect-video overflow-hidden rounded-lg border border-white/5 bg-white/5">
+        {project.imageSrc ? (
+          <img
+            src={project.imageSrc}
+            alt={`Preview of ${project.title}`}
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-[var(--foreground)]/40 text-sm" aria-hidden>No image</div>
+        )}
+      </div>
             <div className="flex flex-wrap gap-4 justify-center">
               {project.github && (
                 <Link href={project.github} target="_blank" className="gap-2 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg hover:bg-[var(--retro-primary)] hover:text-[var(--retro-bg)] transition-all font-bold">
