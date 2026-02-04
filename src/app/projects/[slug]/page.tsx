@@ -167,7 +167,7 @@ export default async function ProjectPage({ params }: PageProps) {
                 </div>
               )}
             </div>
-              <div className="w-full aspect-video overflow-hidden rounded-lg border border-white/5 bg-white/5">
+              <div className="w-full aspect-video overflow-hidden">
         {project.imageSrc ? (
           <img
             src={project.imageSrc}
@@ -197,17 +197,17 @@ export default async function ProjectPage({ params }: PageProps) {
           <div className="md:px-8 md:border-l-2 border-[#67e242]/30 flex flex-col gap-10">
             <section>
               <h2 className="text-[#67e242] text-2xl font-mono mb-4 flex items-center gap-2">
-                <span className="opacity-50 text-sm">01.</span> STACK
+                 STACK
               </h2>
               <div className="flex flex-wrap gap-6 justify-start">
                 {project.technologies?.map((tech: string, idx: number) => (
-                  <div key={idx} title={tech} className="hover:scale-110 transition-transform">
+                  <div key={idx} title={tech} className="relative group hover:scale-110 transition-transform">
                     <Image 
                       src={`/images/${tech.toLowerCase()}.svg`} 
                       alt={tech} 
-                      width={45} 
-                      height={45} 
-                      className="drop-shadow-[0_0_8px_rgba(103,226,66,0.3)]"
+                      width={35} 
+                      height={35} 
+                      className="grayscale hover:grayscale-0 transition-all duration-300"
                     />
                   </div>
                 ))}
@@ -215,9 +215,7 @@ export default async function ProjectPage({ params }: PageProps) {
             </section>
 
             <section>
-              <h2 className="text-[#67e242] text-2xl font-mono mb-4 flex items-center gap-2">
-                <span className="opacity-50 text-sm">02.</span> ABOUT
-              </h2>
+              
               <div className="prose max-w-none text-[var(--foreground)]">
                 <PortableText value={project.content} components={components} />
               </div>

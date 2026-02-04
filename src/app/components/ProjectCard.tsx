@@ -91,7 +91,7 @@ export default function ProjectCard({
       </div>
 
       {/* Project Image */}
-      <div className="w-full aspect-video overflow-hidden rounded-lg border border-white/5 bg-white/5">
+      <div className="w-full aspect-video overflow-hidden">
         {imageSrc ? (
           <img
             src={imageSrc}
