@@ -1,0 +1,27 @@
+// https://www.sanity.io/docs/structure-builder-cheat-sheet
+export const structure = (S: any) =>
+  S.list()
+    .title('Content')
+    .items([
+      S.listItem()
+        .title('Projects')
+        .icon(() => '📁')
+        .child(
+          S.documentTypeList('project')
+            .title('Projects')
+            .filter('_type == "project"')
+        ),
+      S.listItem()
+        .title('Authors')
+        .icon(() => '👤')
+        .child(
+          S.documentTypeList('author')
+            .title('Authors')
+            .filter('_type == "author"')
+        ),
+      S.divider(),
+      // Add any additional document types that aren't handled above
+      ...S.documentTypeListItems().filter(
+        (item: any) => !['project', 'author'].includes(item.getId()!)
+      ),
+    ])
