@@ -90,9 +90,9 @@ export default function AboutPage() {
                 ))}
               </ul>
               <div className="flex flex-wrap gap-3 mt-4 items-center">
-                <Image src="/images/Html.svg" alt="HTML" width={30} height={30} />
-                <Image src="/images/Css.svg" alt="CSS" width={30} height={30} />
-                <Image src="/images/Js.svg" alt="JS" width={30} height={30} />
+                <Image src="/images/html.svg" alt="HTML" width={30} height={30} />
+                <Image src="/images/css.svg" alt="CSS" width={30} height={30} />
+                <Image src="/images/javascript.svg" alt="JS" width={30} height={30} />
                 <Image src="/images/git.svg" alt="Git" width={30} height={30} />
                 <Image src="/images/node.svg" alt="Node" width={30} height={30} />
                 <Image src="/images/react.png" alt="React" width={30} height={30} />
