@@ -62,7 +62,7 @@ export default function AboutPage() {
               onClick={() => setActiveTab(tab)}
               className={`px-6 py-2 text-xs font-bold uppercase border-2 rounded-pixel-lg transition-all ${
                 activeTab === tab
-                  ? "bg-[var(--retro-primary)] text-[var(--retro-bg)]"
+                  ? "bg-[var(--retro-primary)] text-[var(--retro-bg)] shadow-[4px_4px_0px_var(--foreground)]"
                   : "border-[var(--retro-primary)] opacity-60 hover:opacity-100"
               }`}
             >
@@ -73,7 +73,7 @@ export default function AboutPage() {
 
         {/* Tab Content: Program */}
         <div className={activeTab === "Program" ? "block" : "hidden"}>
-          <div className="border-2 border-gray-300 pattern-square shadow-md p-6">
+          <div className="border-2 pattern-square  p-6  shadow-[4px_4px_0px_var(--foreground)]">
             <div className="service-content">
               <Image className="mb-3" src="/images/code.png" alt="Code Icon" width={50} height={50} />
               <h3 className="text-xl font-semibold mb-2">Program</h3>
@@ -103,7 +103,7 @@ export default function AboutPage() {
 
         {/* Tab Content: Design */}
         <div className={activeTab === "Design" ? "block" : "hidden"}>
-          <div className="border-2 border-gray-300 shadow-md rounded-lg p-6">
+          <div className="border-2 border-[var(--retro-primary)] p-6 p-6  shadow-[4px_4px_0px_var(--foreground)] ">
             <div className="service-content">
               <Image className="mb-3" src="/images/design.png" alt="Design Icon" width={50} height={50} />
               <h3 className="text-xl font-semibold mb-2">Design</h3>
