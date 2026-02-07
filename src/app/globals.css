@@ -12,6 +12,7 @@
   --primary-rgb: 0, 0, 0;
   --secondary-rgb: 51, 51, 51;
   --button: #c7ebbc;
+  --title: #54d22d96;
 }
 
 
@@ -21,10 +22,14 @@
   --primary-rgb: 255, 255, 255;
   --secondary-rgb: 229, 229, 229;
   --button: #67e242;
+  --title: #53d22d;
+
 }
-/*  h1 */
+
+
 h1, h2, h3, h4, h5, h6 {
 color: #67e242;
+text-transform: uppercase;
 }
 
 
@@ -39,9 +44,8 @@ body {
 .toggle-button {
   background-color: var(--button);
   color: var(--foreground);
-  border-radius: 30%;
   padding: 0.5rem;
-  border: 0;
+
 }
 
 /* navigation */
