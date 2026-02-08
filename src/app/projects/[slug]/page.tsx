@@ -196,7 +196,7 @@ export default async function ProjectPage({ params }: PageProps) {
           {/* Right Column: Details */}
           <div className="md:px-8 md:border-l-2 border-[#67e242]/30 flex flex-col gap-10">
             <section>
-              <h2 className="text-[#67e242] text-2xl font-mono mb-4 flex items-center gap-2">
+              <h2 className="text-2xl font-mono mb-4 flex items-center gap-2">
                  STACK
               </h2>
               <div className="flex flex-wrap gap-6 justify-start">

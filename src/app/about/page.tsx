@@ -34,13 +34,13 @@ export default function AboutPage() {
         </div>
 
         </div>
-        <div className="flex justify-center md:justify-end">
+        <div className="flex justify-center md:justify-end ">
           <Image
             src="/images/profilelight.jpg"
             alt="Professional photo"
             width={420}
             height={220}
-            className="rounded-sm object-cover"
+            className="object-cover shadow-[8px_8px_0px_var(--foreground)]"
           />
         </div>
       </section>

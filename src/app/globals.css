@@ -23,14 +23,21 @@
   --secondary-rgb: 229, 229, 229;
   --button: #67e242;
   --title: #53d22d;
+  
 
 }
 
 
 h1, h2, h3, h4, h5, h6 {
-color: #67e242;
-text-transform: uppercase;
+  color: var(--title);
+  text-transform: uppercase;
+  /* Correct shorthand: font-weight font-size font-family */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  letter-spacing: -0.02em;
+  text-transform: uppercase; /* Matching your previous style */
 }
+
+
 
 
 body {

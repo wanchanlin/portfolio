@@ -59,7 +59,7 @@ export default function ProjectCard({
           {title}
         </h3>
 
-        <div className="flex flex-wrap gap-3 mt-2 mb-4 justify-start">
+        <div className="flex flex-wrap gap-3 mt-2 mb-4 jusstify-start">
           {(technologies || []).filter((t): t is string => typeof t === 'string').map((tech) => (
             <div key={tech} className="relative group">
                <Image
