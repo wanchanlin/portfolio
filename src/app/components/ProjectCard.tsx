@@ -91,17 +91,19 @@ export default function ProjectCard({
       </div>
 
       {/* Project Image */}
-      <div className="w-full aspect-video overflow-hidden">
+<div className="p-8">
+      <div className="w-full aspect-video overflow-hidden shadow-[4px_4px_0px_var(--foreground)] bg-[#ffffff]/20 border-2 border-[var(--foreground)]">
         {imageSrc ? (
           <img
             src={imageSrc}
             alt={`Preview of ${title}`}
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500 "
             loading="lazy"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-[var(--foreground)]/40 text-sm" aria-hidden>No image</div>
         )}
+      </div>
       </div>
     </div>
   )
