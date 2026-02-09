@@ -167,18 +167,20 @@ export default async function ProjectPage({ params }: PageProps) {
                 </div>
               )}
             </div>
-              <div className="w-full aspect-video overflow-hidden">
+            <div className="p-8">
+          <div className="border-2 border-[var(--foreground)] shadow-[4px_4px_0px_var(--foreground)] bg-[#ffffff]/20 w-full aspect-videooverflow-hidden">
         {project.imageSrc ? (
           <img
             src={project.imageSrc}
             alt={`Preview of ${project.title}`}
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300 ease-out "
             loading="lazy"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-[var(--foreground)]/40 text-sm" aria-hidden>No image</div>
         )}
       </div>
+            </div>
             <div className="flex flex-wrap gap-4 justify-center">
               {project.github && (
                 <Link href={project.github} target="_blank" className="gap-2 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg hover:bg-[var(--retro-primary)] hover:text-[var(--retro-bg)] transition-all font-bold">

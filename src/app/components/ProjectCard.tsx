@@ -83,7 +83,7 @@ export default function ProjectCard({
 
         <Link 
           href={link} 
-          className="mt-4 w-fit gap-3 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg hover:bg-[var(--retro-primary)] hover:shadow-[4px_4px_0px_var(--foreground)] transition-all font-bold group"
+          className="mt-4 w-fit gap-3 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg  hover:shadow-[2px_2px_0px_var(--foreground)]  shadow-[4px_4px_0px_var(--foreground)] transition-all font-bold group"
         >
           VIEW PROJECT
           <FontAwesomeIcon icon={faChevronRight} className="text-xs transition-transform group-hover:translate-x-1" />
