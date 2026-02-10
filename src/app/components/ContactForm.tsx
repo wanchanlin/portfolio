@@ -4,6 +4,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import Button from "../components/Button";
+
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -85,18 +87,17 @@ export default function ContactForm() {
           <p className="text-sm opacity-80 mb-4">
             <b>Email</b>: <a href="mailto:ohanalin@gmail.com" className="hover:underline">ohanalin@gmail.com</a>
           </p>
-          <div className=" flex items-center gap-4">
+          <div className="flex items-end gap-4 flex-row">
             <Link href="https://github.com/wanchanlin" target="_blank" aria-label="GitHub">
               <FontAwesomeIcon icon={faGithub} className='text-4xl hover:text-[var(--retro-primary)] transition-colors'/>
             </Link>
             <Link href="https://www.linkedin.com/in/wanchanlin/" target="_blank" aria-label="LinkedIn">
               <FontAwesomeIcon icon={faLinkedin} className='text-4xl hover:text-[var(--retro-primary)] transition-colors'/>
             </Link>
-            <Link href="https://drive.google.com/file/d/1WMRM53EZVsGQciQ1KZ6U-PWWpXPaP5XD/view?usp=sharing">
-              <button className="border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg hover:bg-[var(--retro-primary)] hover:text-[var(--retro-bg)] transition-all font-bold">
-                [ DOWNLOAD_RESUME ]
-              </button>
-            </Link>
+            <Button  href="https://drive.google.com/file/d/1WMRM53EZVsGQciQ1KZ6U-PWWpXPaP5XD/view?usp=sharing">
+  [ DOWNLOAD_RESUME ]
+</Button>
+            
           </div>
         </div>
         
@@ -152,13 +153,11 @@ export default function ContactForm() {
           </div>
 
           <div className="flex items-center gap-4">
-            <button
-              className="w-fit border-2 border-[var(--retro-primary)] px-8 py-3 rounded-pixel-lg hover:bg-[var(--retro-primary)] hover:text-[var(--retro-bg)] transition-all font-bold disabled:opacity-50 disabled:cursor-not-allowed active:translate-y-0.5"
-              type="submit"
+            <Button  type="submit"
               disabled={submitting}
-            >
-              {submitting ? 'SENDING...' : 'SEND MESSAGE'}
-            </button>
+            >{submitting ? 'SENDING...' : 'SEND MESSAGE'}
+            </Button>
+          
             
             {status && (
               <span className={`text-sm font-bold ${status.ok ? 'text-green-400' : 'text-red-400'}`}>

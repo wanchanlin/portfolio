@@ -5,6 +5,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import Button from '../components/Button';
+
 
 interface ProjectCardProps {
   number: string;
@@ -81,13 +83,16 @@ export default function ProjectCard({
           {description}
         </p>
 
-        <Link 
+        {/* <Link 
           href={link} 
           className="mt-4 w-fit gap-3 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg  hover:shadow-[2px_2px_0px_var(--foreground)]  shadow-[4px_4px_0px_var(--foreground)] transition-all font-bold group"
         >
           VIEW PROJECT
           <FontAwesomeIcon icon={faChevronRight} className="text-xs transition-transform group-hover:translate-x-1" />
-        </Link>
+        </Link> */}
+        <Button icon={faChevronRight} href={link}>
+          View Projects
+        </Button>
       </div>
 
       {/* Project Image */}
