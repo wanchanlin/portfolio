@@ -8,7 +8,8 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { client } from "../../../sanity/lib/client";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import ContactForm from "../../components/ContactForm"; 
-import { urlFor } from "../../../sanity/lib/image";
+import { Button as SanityButton } from "@sanity/ui";
+import Button from '../../components/Button';
 
 // --- Interfaces ---
 
@@ -183,14 +184,18 @@ export default async function ProjectPage({ params }: PageProps) {
             </div>
             <div className="flex flex-wrap gap-4 justify-center">
               {project.github && (
-                <Link href={project.github} target="_blank" className="gap-2 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg hover:bg-[var(--retro-primary)] hover:text-[var(--retro-bg)] transition-all font-bold">
-                  GitHub <FontAwesomeIcon icon={faGithub} />
-                </Link>
+                <Button href={project.github}  icon={faGithub}> GitHub</Button>
+
+                // <Link href={project.github} target="_blank" className="gap-2 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg hover:bg-[var(--retro-primary)] hover:text-[var(--retro-bg)] transition-all font-bold">
+                //   GitHub <FontAwesomeIcon icon={faGithub} />
+                // </Link>
               )}
               {project.demo && (
-                <Link href={project.demo} target="_blank" className="gap-2 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg hover:bg-[var(--retro-primary)] hover:text-[var(--retro-bg)] transition-all font-bold">
-                  Live Demo <FontAwesomeIcon icon={faLaptopCode} />
-                </Link>
+                                <Button href={project.demo}  icon={faLaptopCode}> Live Demo</Button>
+
+                // <Link href={project.demo} target="_blank" className="gap-2 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg hover:bg-[var(--retro-primary)] hover:text-[var(--retro-bg)] transition-all font-bold">
+                //   Live Demo <FontAwesomeIcon icon={faLaptopCode} />
+                // </Link>
               )}
             </div>
           </div>
