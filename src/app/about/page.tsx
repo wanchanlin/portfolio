@@ -29,7 +29,7 @@ export default function AboutPage() {
               System.Status: Online
             </h1>
             <p className="text-xl leading-relaxed font-bold">
-              {"> "}I blend <span className="italic underline">design</span> and <span className="italic underline">code</span> to build the future of the web. 9+ years of terminal experience.
+              {"> "}I blend <span className="bg-yellow-500 text-black p-2 border border-[var(--foreground) shadow-[2px_2px_0px_var(--foreground)]">design</span> and <span className="bg-yellow-500 text-black p-2 border border-[var(--foreground) shadow-[2px_2px_0px_var(--foreground)]">code</span> to build the future of the web. 9+ years of terminal experience.
             </p>
         </div>
 
@@ -83,8 +83,8 @@ export default function AboutPage() {
                 <span className="text-[var(--button)] ml-1">|</span>
               </p>
               <ul className="flex flex-wrap gap-2 mt-4">
-                {["Full-Stack Development", "React & Next.js", "Node.js & Express", "Database Management", "API Integration"].map((skill) => (
-                   <li key={skill} className="bg-[var(--button)] text-black px-3 py-1 rounded-full text-sm">
+                {["Full-Stack Development", "Database Management", "API Integration"].map((skill) => (
+                   <li key={skill} className=" text-[var(--foreground)] px-3 py-1 text-sm border border-[var(--foreground)] shadow-[2px_2px_0px_var(--foreground)] ">
                     {skill}
                    </li>
                 ))}
@@ -114,7 +114,7 @@ export default function AboutPage() {
               </p>
               <ul className="flex flex-wrap gap-2 mt-4">
                 {["UI/UX Design", "Graphic Design", "Motion Graphics", "Video Production", "Adobe Creative Suite"].map((skill) => (
-                   <li key={skill} className="bg-[var(--button)] text-black px-3 py-1 rounded-full text-sm">
+                   <li key={skill} className="text-[var(--foreground)] px-3 py-1 text-sm border border-[var(--foreground)] shadow-[2px_2px_0px_var(--foreground)] ">
                     {skill}
                    </li>
                 ))}

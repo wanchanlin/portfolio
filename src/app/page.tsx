@@ -225,8 +225,8 @@ export default function Home() {
         </section> */}
 
         {/* Contact Section */}
-        <section id="contact" className="md:max-w-5xl mx-auto my-24">
-          <div className="my-12 w-full bg-size-[0.7em] h-4 bg-repeat-x pattern-dot-three opacity-30"></div>
+        <section id="contact" className="md:max-w-5xl md:p-16 mx-auto my-24 border-2 border-[var(--retro-primary)] md:p-16 p-8 shadow-[8px_8px_0px_var(--foreground)]">
+         
           <h2 className="text-[1.6rem] text-center font-semibold text-[var(--foreground)] mb-8">
             {`{ CONTACT }`}
           </h2>
