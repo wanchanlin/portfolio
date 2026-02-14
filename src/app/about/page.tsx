@@ -130,8 +130,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="mt-12">
+      {/* Decorative Divider */}
+      <section className="mt-12"
+      s>
         <h2 className="text-2xl font-semibold mb-4">Contact Me</h2>
         <ContactForm />
       </section>
