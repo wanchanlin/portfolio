@@ -4,7 +4,7 @@ import React, { useEffect, useState, useMemo, useRef } from "react";
 import ProjectCard from "./components/ProjectCard";
 import ContactForm from "./components/ContactForm";
 import GSAPWrapper from "./components/GSAPWrapper";
-import Timeline from "./components/Timeline";
+import Timeline from './components/Timeline2';
 import { gsap } from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react"; 
@@ -173,7 +173,7 @@ export default function Home() {
         </section>
 
         {/* Experience Timeline Section */}
-        {/* <section id="experience" className="md:max-w-5xl mx-auto my-24">
+        <section id="experience" className="md:max-w-5xl mx-auto my-24">
           <div className="my-12 w-full bg-size-[0.7em] h-4 bg-repeat-x pattern-dot-three opacity-30"></div>
           <h2 className="text-[1.6rem] text-center font-semibold text-[var(--foreground)] mb-8">
             {`{ EXPERIENCE }`}
@@ -222,7 +222,7 @@ export default function Home() {
               }
             ]}
           />
-        </section> */}
+        </section>
 
         {/* Contact Section */}
        <section id="contact" className="relative md:max-w-5xl mx-auto my-24 border-2 border-[var(--retro-primary)] md:p-16 p-8 shadow-[8px_8px_0px_var(--foreground)] ">
