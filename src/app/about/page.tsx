@@ -131,8 +131,7 @@ export default function AboutPage() {
       </section>
 
       {/* Decorative Divider */}
-      <section className="mt-12"
-      s>
+      <section className="mt-12">
         <h2 className="text-2xl font-semibold mb-4">Contact Me</h2>
         <ContactForm />
       </section>
