@@ -47,10 +47,10 @@ export default function HorizontalScrollText() {
         
         {/* Experience Header */}
         <div className="flex-shrink-0 mr-24">
-          <h2 className="text-[6vw] font-bold text-[var(--foreground)] whitespace-nowrap uppercase tracking-tighter">
+          <h2 className="text-3xl font-bold text-[var(--foreground)] whitespace-nowrap uppercase tracking-tighter">
             {`{ Experience }`}
           </h2>
-          <div className="mt-4 w-full bg-size-[0.7em] h-4 bg-repeat-x pattern-dot-three opacity-30"></div>
+          
         </div>
 
         {/* Timeline Content */}
