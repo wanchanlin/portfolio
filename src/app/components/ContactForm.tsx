@@ -95,7 +95,7 @@ export default function ContactForm() {
               <FontAwesomeIcon icon={faLinkedin} className='text-4xl hover:text-[var(--retro-primary)] transition-colors'/>
             </Link>
             <Button  href="https://drive.google.com/file/d/1WMRM53EZVsGQciQ1KZ6U-PWWpXPaP5XD/view?usp=sharing">
-  [ DOWNLOAD_RESUME ]
+  DOWNLOAD_RESUME 
 </Button>
             
           </div>
