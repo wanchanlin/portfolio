@@ -277,10 +277,18 @@ export default async function ProjectPage({ params }: PageProps) {
           </div>
         </div>
 
-        <section className="mt-20">
-        <div className="my-12 w-full bg-size-[0.7em] h-4 bg-repeat-x pattern-dot-three"></div>
-          <ContactForm />
-        </section>
+        {/* Contact Section */}
+               <section id="contact" className="relative md:max-w-5xl mx-auto my-24 border-2 border-[var(--retro-primary)] md:p-16 p-8 shadow-[8px_8px_0px_var(--foreground)] ">
+          
+                  {/* The "Contact Me" Badge */}
+                  <h2 className="absolute -top-6 -left-4 md:-left-8 rotate-[-5deg] bg-yellow-500 text-black font-mono font-bold uppercase p-2 px-6 border-2 border-[var(--foreground)] shadow-[4px_4px_0px_var(--foreground)] hover:rotate-0 transition-transform cursor-default z-10">
+                    contact_me.exe
+                  </h2>
+        
+                  <div className="mt-8 md:mt-0">
+                    <ContactForm />
+                  </div>
+          </section>
       </main>
       
     </>
