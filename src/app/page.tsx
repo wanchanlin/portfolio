@@ -4,7 +4,7 @@ import React, { useEffect, useState, useMemo, useRef } from "react";
 import ProjectCard from "./components/ProjectCard";
 import ContactForm from "./components/ContactForm";
 import GSAPWrapper from "./components/GSAPWrapper";
-import Timeline from "./components/Timeline";
+import Timeline from './components/Timeline2';
 import { gsap } from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react"; 
@@ -172,57 +172,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Experience Timeline Section */}
-        {/* <section id="experience" className="md:max-w-5xl mx-auto my-24">
-          <div className="my-12 w-full bg-size-[0.7em] h-4 bg-repeat-x pattern-dot-three opacity-30"></div>
-          <h2 className="text-[1.6rem] text-center font-semibold text-[var(--foreground)] mb-8">
-            {`{ EXPERIENCE }`}
-          </h2>
-          
-          <Timeline 
-            items={[
-              {
-                id: '1',
-                title: 'Full Stack Developer',
-                company: 'Tech Company',
-                period: '2022 - Present',
-                type: 'work',
-                description: [
-                  'Developed and maintained web applications using React and Next.js',
-                  'Implemented responsive designs and optimized user experiences',
-                  'Collaborated with cross-functional teams to deliver projects'
-                ],
-                technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS']
-              },
-              {
-                id: '2',
-                title: 'Frontend Developer',
-                company: 'Digital Agency',
-                period: '2020 - 2022',
-                type: 'work',
-                description: [
-                  'Created modern, responsive websites for various clients',
-                  'Worked closely with designers to implement pixel-perfect layouts',
-                  'Optimized websites for performance and SEO'
-                ],
-                technologies: ['JavaScript', 'Vue.js', 'SASS', 'WordPress']
-              },
-              {
-                id: '3',
-                title: 'Computer Science Degree',
-                company: 'University Name',
-                period: '2016 - 2020',
-                type: 'education',
-                description: [
-                  'Bachelor of Science in Computer Science',
-                  'Focused on software engineering and web development',
-                  'Graduated with honors'
-                ],
-                technologies: ['Java', 'Python', 'Data Structures', 'Algorithms']
-              }
-            ]}
-          />
-        </section> */}
+     
 
         {/* Contact Section */}
        <section id="contact" className="relative md:max-w-5xl mx-auto my-24 border-2 border-[var(--retro-primary)] md:p-16 p-8 shadow-[8px_8px_0px_var(--foreground)] ">

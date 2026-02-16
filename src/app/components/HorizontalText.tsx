@@ -3,71 +3,102 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText"; 
+import Timeline from './Timeline2'; 
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger);
 
 export default function HorizontalScrollText() {
   const componentRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLParagraphElement>(null);
+  const scrollWrapperRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    let mm = gsap.matchMedia();
+    let ctx = gsap.context(() => {
+      if (!scrollWrapperRef.current || !componentRef.current) return;
 
-    mm.add("(min-width: 0px)", () => {
-      if (!textRef.current || !componentRef.current) return;
-
-      const split = new SplitText(textRef.current, { type: "chars, words" });
+      const scrollWidth = scrollWrapperRef.current.scrollWidth;
+      const viewportWidth = window.innerWidth;
       
-      // Calculate how far the text needs to move
-      // (Total width of text - width of the viewport)
-      const getScrollAmount = () => {
-        let textWidth = textRef.current?.offsetWidth || 0;
-        return -(textWidth - window.innerWidth);
-      };
+      // The total amount to move the container to the left
+      const scrollDistance = scrollWidth - viewportWidth;
 
-      const scrollTween = gsap.to(textRef.current, {
-        x: getScrollAmount,
+      gsap.to(scrollWrapperRef.current, {
+        x: -scrollDistance,
         ease: "none",
         scrollTrigger: {
           trigger: componentRef.current,
-          pin: true,
+          pin: true,           // Keeps the section fixed while scrolling
+          scrub: 1,            // Smoothly links scroll position to animation
           start: "top top",
-          // Adjust scroll length based on text width for a consistent feel
-          end: () => `+=${textRef.current?.offsetWidth}`,
-          scrub: 1,
-          invalidateOnRefresh: true, // Crucial for responsiveness
+          end: () => `+=${scrollDistance}`, // Length of the scroll
+          invalidateOnRefresh: true, 
         },
       });
+    }, componentRef);
 
-      split.chars.forEach((char) => {
-        gsap.from(char, {
-          yPercent: () => gsap.utils.random(-100, 100),
-          opacity: 0,
-          scrollTrigger: {
-            trigger: char,
-            containerAnimation: scrollTween,
-            start: "left 95%",
-            end: "left 60%",
-            scrub: true,
-          },
-        });
-      });
-    });
-
-    return () => mm.revert();
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={componentRef} className="overflow-hidden h-screen flex items-center ">
-      {/* Use w-fit so the container wraps the text size exactly */}
-      <div className="flex w-fit">
-        <p 
-          ref={textRef}
-          className="whitespace-nowrap px-[10vw] font-semibold leading-[1.1] text-[12vw] md:text-[10vw] lg:text-[8vw]"
-        >
-          A designer🎨–developer 👩🏻‍💻 crafting digital ideas, inspired by birds 🐦 and fueled by cooking🍳.
-        </p>
+    <section ref={componentRef} className="overflow-hidden bg-[var(--background)]">
+      {/* This inner div is what actually moves. 
+          w-fit ensures it expands to fit all timeline items. 
+      */}
+      <div ref={scrollWrapperRef} className="flex flex-nowrap items-center h-screen w-fit px-[10vw]">
+        
+        {/* Experience Header */}
+        <div className="flex-shrink-0 mr-24">
+          <h2 className="text-3xl font-bold text-[var(--foreground)] whitespace-nowrap uppercase tracking-tighter">
+            {`{ Experience }`}
+          </h2>
+          
+        </div>
+
+        {/* Timeline Content */}
+        <div className="flex-shrink-0">
+          <Timeline 
+            items={[
+              {
+                id: '1',
+                title: 'Web Developer',
+                company: 'Polaron Tech',
+                period: '2026 - Present',
+                type: 'work',
+                description: ['Built scalable Next.js apps', 'Led frontend architecture'],
+                technologies: ['React', 'Next.js', 'HTML', 'CSS']
+              },
+              {
+                id: '2',
+                title: 'Wordpress Developer',
+                company: 'LSC Tech',
+                period: '2025 - 2026',
+                type: 'work',
+                description: ['Pixel-perfect UI implementation', 'Client-side optimization'],
+                technologies: ['Html', 'CSS', 'GSAP']
+              },
+              {
+                id: '3',
+                title: 'Web Development Student',
+                company: 'Humber College',
+                period: '2024 - 2025',
+                type: 'education',
+                description: ['Specialized in Software Systems', 'Dean\'s List'],
+                technologies: [ 'Web Development Fundamentals','php', 'HTML', 'CSS', 'SQL', '.NET',]
+              },
+              {
+                id: '4',
+                title: 'Web Designer',
+                company: 'Rakuten',
+                period: '2020',
+                type: 'work',
+                description: ['Internal tool development', 'API integrations'],
+                technologies: ['Html', 'CSS', 'Javascript']
+              }
+            ]}
+          />
+        </div>
+
+        {/* Closing spacer to give some breathing room at the end */}
+        <div className="w-[20vw] flex-shrink-0" />
       </div>
     </section>
   );
