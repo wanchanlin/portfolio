@@ -87,7 +87,7 @@ export default function Timeline({ items }: TimelineProps) {
                 className="relative bg-[var(--background)] border-2 border-[var(--retro-primary)] p-6 shadow-[8px_8px_0px_var(--foreground)] w-80 h-[360px] flex flex-col z-10 hover:shadow-[12px_12px_0px_var(--retro-primary)] transition-all duration-300"
               >
                 {/* Floating Badge */}
-                <div className="absolute -top-3 -right-3 bg-yellow-400 text-black text-[10px] font-black px-3 py-1 border-2 border-black uppercase shadow-[2px_2px_0px_black] z-30">
+                <div className="absolute -top-3 -right-3 bg-yellow-400 text-black text-xs font-black px-3 py-1 border-2 border-black uppercase shadow-[2px_2px_0px_black] z-30">
                   {item.type}
                 </div>
 
@@ -105,11 +105,11 @@ export default function Timeline({ items }: TimelineProps) {
                   </div>
                   
                   <div className="flex flex-col gap-1 mb-4">
-                    <div className="text-[var(--retro-primary)] font-mono text-xs font-bold italic flex items-center gap-2">
+                    <div className="text-[var(--retro-primary)] font-mono text-sm font-bold italic flex items-center gap-2">
                       <FontAwesomeIcon icon={faCalendar} className="text-[10px]" />
                       <span>{item.period}</span>
                     </div>
-                    <div className="text-[var(--foreground)] font-bold text-sm uppercase opacity-60">
+                    <div className="text-[var(--foreground)] font-bold text-md uppercase opacity-60">
                       {item.company}
                     </div>
                   </div>
@@ -117,7 +117,7 @@ export default function Timeline({ items }: TimelineProps) {
                   <div className="flex-grow border-t border-[var(--retro-primary)]/20 pt-4">
                     <ul className="space-y-2">
                       {item.description.slice(0, 2).map((desc, i) => (
-                        <li key={i} className="text-xs leading-relaxed flex items-start gap-2">
+                        <li key={i} className="text-sm text-[var(--foreground)] leading-relaxed flex items-start gap-2">
                           <span className="text-[var(--retro-primary)] font-bold">»</span>
                           <span className="line-clamp-3 opacity-80">{desc}</span>
                         </li>
@@ -129,10 +129,10 @@ export default function Timeline({ items }: TimelineProps) {
                 {/* Fixed Footer for Tech */}
                 <div className="mt-4 pt-4 border-t border-[var(--retro-primary)]/10">
                   <div className="flex flex-wrap gap-2">
-                    {item.technologies?.slice(0, 3).map((tech) => (
+                    {item.technologies?.slice(0, 5).map((tech) => (
                       <span 
                         key={tech}
-                        className="px-2 py-0.5 bg-black text-[var(--retro-primary)] text-[9px] font-mono border border-[var(--retro-primary)]/50 uppercase tracking-tighter"
+                        className="px-2 py-0.5 bg-[var(--foreground)] text-[var(--background)] text-xs font-mono border border-[var(--retro-primary)]/50 uppercase tracking-tighter"
                       >
                         {tech}
                       </span>

@@ -59,39 +59,39 @@ export default function HorizontalScrollText() {
             items={[
               {
                 id: '1',
-                title: 'Full Stack Developer',
-                company: 'Tech Company',
-                period: '2022 - Present',
+                title: 'Web Developer',
+                company: 'Polaron Tech',
+                period: '2026 - Present',
                 type: 'work',
                 description: ['Built scalable Next.js apps', 'Led frontend architecture'],
-                technologies: ['React', 'Next.js', 'TS']
+                technologies: ['React', 'Next.js', 'HTML', 'CSS']
               },
               {
                 id: '2',
-                title: 'Frontend Developer',
-                company: 'Digital Agency',
-                period: '2020 - 2022',
+                title: 'Wordpress Developer',
+                company: 'LSC Tech',
+                period: '2025 - 2026',
                 type: 'work',
                 description: ['Pixel-perfect UI implementation', 'Client-side optimization'],
-                technologies: ['Vue.js', 'Tailwind', 'GSAP']
+                technologies: ['Html', 'CSS', 'GSAP']
               },
               {
                 id: '3',
-                title: 'Computer Science',
-                company: 'University of Tech',
-                period: '2016 - 2020',
+                title: 'Web Development Student',
+                company: 'Humber College',
+                period: '2024 - 2025',
                 type: 'education',
                 description: ['Specialized in Software Systems', 'Dean\'s List'],
-                technologies: ['Java', 'C++', 'Algorithms']
+                technologies: [ 'Web Development Fundamentals','php', 'HTML', 'CSS', 'SQL', '.NET',]
               },
               {
                 id: '4',
-                title: 'Junior Dev',
-                company: 'Startup Hub',
-                period: '2015',
+                title: 'Web Designer',
+                company: 'Rakuten',
+                period: '2020',
                 type: 'work',
                 description: ['Internal tool development', 'API integrations'],
-                technologies: ['Node.js', 'Express']
+                technologies: ['Html', 'CSS', 'Javascript']
               }
             ]}
           />

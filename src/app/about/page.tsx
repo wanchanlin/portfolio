@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import ContactForm from "../components/ContactForm";
+import Character from "../components/Character";
 
 export default function AboutPage() {
   const [activeTab, setActiveTab] = useState("Program");
@@ -34,7 +35,7 @@ export default function AboutPage() {
         </div>
 
         </div>
-        <div className="flex justify-center md:justify-end ">
+        {/* <div className="flex justify-center md:justify-end ">
           <Image
             src="/images/profilelight.jpg"
             alt="Professional photo"
@@ -42,6 +43,13 @@ export default function AboutPage() {
             height={220}
             className="object-cover shadow-[8px_8px_0px_var(--foreground)]"
           />
+        </div> */}
+        <div>
+        
+          <div className="w-full max-w-xs mx-auto border-4 border-[var(--retro-primary)] shadow-[8px_8px_0px_var(--foreground)]">
+              <Character/>
+              
+          </div>
         </div>
       </section>
 
