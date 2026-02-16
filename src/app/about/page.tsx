@@ -11,21 +11,10 @@ export default function AboutPage() {
   const tabs = ["Program", "Design"];
 
   return (
-    <main className="max-w-5xl mx-auto px-4 py-12 font-mono ">
+    <main className="max-w-5xl mx-auto px-4 py-12 font-mono gap-16"> 
       {/* Hero Section */}
-      <section className="md:grid md:grid-cols-2 gap-8 items-center">
+      <section className="md:grid md:grid-cols-2 gap-8 items-center ">
         <div className="">
-          {/* <p className="text-lg leading-relaxed text-[var(--foreground)]">
-            With 9+ years at the crossroads of design and development, I
-            create engaging digital experiences that blend creativity and
-            function. From graphic design and motion graphics to web
-            development, I’ve worked across entertainment, fashion, and
-            tech—adapting to diverse creative needs. Proficient in Adobe
-            Creative Suite and driven by evolving trends, I bring ideas to
-            life through impactful visual storytelling.
-            <span className="text-[var(--button)] ml-1">|</span>
-          </p> */}
-          <div>
           <h1 className="text-xs uppercase tracking-widest mb-4 opacity-70 underline decoration-dotted  ">
               System.Status: Online
             </h1>
@@ -34,7 +23,7 @@ export default function AboutPage() {
             </p>
         </div>
 
-        </div>
+        
         {/* <div className="flex justify-center md:justify-end ">
           <Image
             src="/images/profilelight.jpg"
@@ -46,7 +35,7 @@ export default function AboutPage() {
         </div> */}
         <div>
         
-          <div className="w-full max-w-xs mx-auto border-4 border-[var(--retro-primary)] shadow-[8px_8px_0px_var(--foreground)]">
+          <div className="mt-4 h-full max-w-xs mx-auto border-4 border-[var(--retro-primary)] shadow-[8px_8px_0px_var(--foreground)]">
               <Character/>
               
           </div>
