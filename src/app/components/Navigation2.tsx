@@ -13,7 +13,7 @@ export default function Navigation() {
   };
 
   return (
-    <header className="flex items-center justify-between px-6 py-3 md:py-4 shadow-sm max-w-5xl mx-auto w-full bg-white dark:bg-[var(--background)] dark:border-b dark:border-[var(--foreground)] sticky top-4 z-50">
+    <header className="flex items-center justify-between px-6 py-3 md:py-4 shadow-sm max-w-5xl mx-auto w-full bg-[var(--background)] dark:bg-[var(--background)] dark:border-b dark:border-[var(--foreground)] sticky top-4 z-50">
       {/* Logo */}
       <Link href="/" className="z-[60]">
         <img 
