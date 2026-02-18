@@ -13,7 +13,7 @@ export default function Navigation() {
   };
 
   return (
-    <header className="flex items-center justify-between px-6 py-3 md:py-4 shadow-sm max-w-5xl rounded-full mx-auto w-full bg-white dark:bg-gray-800  dark:border-zinc-800 sticky top-4 z-50">
+    <header className="flex items-center justify-between px-6 py-3 md:py-4 shadow-sm max-w-5xl mx-auto w-full bg-white dark:bg-[var(--background)] dark:border-b dark:border-[var(--foreground)] sticky top-4 z-50">
       {/* Logo */}
       <Link href="/" className="z-[60]">
         <img 
@@ -26,7 +26,7 @@ export default function Navigation() {
       {/* Mobile Menu Overlay */}
       <nav
         id="menu"
-        className={`fixed md:relative top-0 left-0 h-screen md:h-auto overflow-hidden flex-col md:flex-row flex items-center justify-center md:justify-start gap-8 text-gray-400 dark:text-white text-sm font-mono transition-all duration-500 ease-in-out z-50 bg-white/95 dark:bg-gray-800/50 backdrop-blur-md md:bg-transparent md:backdrop-blur-none
+        className={`fixed md:relative top-0 left-0 h-screen md:h-auto overflow-hidden flex-col md:flex-row flex items-center justify-center md:justify-start gap-8 text-gray-400 dark:text-[var(--foreground)] text-sm font-mono transition-all duration-500 ease-in-out z-50 bg-white/95  backdrop-blur-md md:bg-transparent md:backdrop-blur-none
           ${menuOpen ? "w-full opacity-100" : "w-0 opacity-0 md:w-auto md:opacity-100"} 
         `}
       >
@@ -64,19 +64,19 @@ export default function Navigation() {
           <span className="relative block w-6 h-5">
             {/* Top Bar */}
             <span
-              className={`absolute left-0 top-0 w-6 h-0.5 bg-gray-900 dark:bg-white transform transition-all duration-300 ease-in-out ${
+              className={`absolute left-0 top-0 w-6 h-0.5  dark:bg-[var(--foreground)]  transition-all duration-300 ease-in-out ${
                 menuOpen ? "rotate-45 translate-y-2" : "translate-y-0"
               }`}
             />
             {/* Middle Bar */}
             <span
-              className={`absolute left-0 top-2 w-6 h-0.5 bg-gray-900 dark:bg-white transform transition-all duration-300 ease-in-out ${
+              className={`absolute left-0 top-2 w-6 h-0.5  dark:bg-[var(--foreground)]  transition-all duration-300 ease-in-out ${
                 menuOpen ? "opacity-0" : "opacity-100"
               }`}
             />
             {/* Bottom Bar */}
             <span
-              className={`absolute left-0 top-4 w-6 h-0.5 bg-gray-900 dark:bg-white transform transition-all duration-300 ease-in-out ${
+              className={`absolute left-0 top-4 w-6 h-0.5  dark:bg-[var(--foreground)] transform transition-all duration-300 ease-in-out ${
                 menuOpen ? "-rotate-45 -translate-y-2" : "translate-y-0"
               }`}
             />

@@ -14,11 +14,11 @@ export default function Footer2() {
 
   return (
     <footer className="w-full px-4">
-      <div className="mx-auto my-8 flex max-w-5xl flex-col items-center justify-between gap-8 rounded-full bg-white px-12 py-3 shadow-sm dark:border-zinc-800 dark:bg-gray-800 md:flex-row md:justify-start md:py-4">
+      <div className="mx-auto my-8 flex max-w-5xl flex-col items-center justify-between gap-4 bg-[var(--background)] px-2 py-2  dark:border-t dark:border-[var(--foreground)] dark:bg-[var(--background)] md:flex-row md:justify-start md:py-2">
         
         {/* Copyright Section */}
-        <div className="text-gray-400 dark:text-white">
-          <p className="text-center text-sm">
+        <div className="text-[var(--foreground)] dark:text-[var(--foreground)]">
+          <p className="text-center md:text-sm text-xs">
             © {currentYear} Joyce's Portfolio. All rights reserved.
           </p>
         </div>
@@ -29,7 +29,7 @@ export default function Footer2() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-gray-400 no-underline transition-colors hover:text-gray-600 dark:text-white dark:hover:text-gray-300 md:ml-6"
+              className="md:text-sm text-xs text-[var(--foreground)] no-underline hover:text-gray-600 dark:text-[var(--foreground)] dark:hover:text-gray-500 md:ml-6"
             >
               {link.label}
             </Link>
