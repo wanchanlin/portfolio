@@ -26,7 +26,7 @@ export default function Navigation() {
       {/* Mobile Menu Overlay */}
       <nav
         id="menu"
-        className={`fixed md:relative top-0 left-0 h-screen md:h-auto overflow-hidden flex-col md:flex-row flex items-center justify-center md:justify-start gap-8 text-gray-400 dark:text-[var(--foreground)] text-sm font-mono transition-all duration-500 ease-in-out z-50 bg-white/95  backdrop-blur-md md:bg-transparent md:backdrop-blur-none
+        className={`fixed md:relative top-0 left-0 h-screen md:h-auto overflow-hidden flex-col md:flex-row flex items-center justify-center md:justify-start gap-8 text-[var(--foreground)] dark:text-[var(--foreground)] text-sm font-mono transition-all duration-500 ease-in-out z-50 bg-[var(--background)]/80  backdrop-blur-md md:bg-transparent md:backdrop-blur-none
           ${menuOpen ? "w-full opacity-100" : "w-0 opacity-0 md:w-auto md:opacity-100"} 
         `}
       >

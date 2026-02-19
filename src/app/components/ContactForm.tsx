@@ -94,8 +94,8 @@ export default function ContactForm() {
             <Link href="https://www.linkedin.com/in/wanchanlin/" target="_blank" aria-label="LinkedIn">
               <FontAwesomeIcon icon={faLinkedin} className='text-4xl hover:text-[var(--retro-primary)] transition-colors'/>
             </Link>
-            <Button  href="https://drive.google.com/file/d/1WMRM53EZVsGQciQ1KZ6U-PWWpXPaP5XD/view?usp=sharing">
-  DOWNLOAD_RESUME 
+            <Button size="sm" href="https://drive.google.com/file/d/1WMRM53EZVsGQciQ1KZ6U-PWWpXPaP5XD/view?usp=sharing">
+  [DOWNLOAD_RESUME] 
 </Button>
             
           </div>
