@@ -64,19 +64,19 @@ export default function Navigation() {
           <span className="relative block w-6 h-5">
             {/* Top Bar */}
             <span
-              className={`absolute left-0 top-0 w-6 h-0.5  dark:bg-[var(--foreground)]  transition-all duration-300 ease-in-out ${
+              className={`absolute left-0 top-0 w-6 h-0.5 bg-[var(--foreground)] dark:bg-[var(--foreground)]  transition-all duration-300 ease-in-out ${
                 menuOpen ? "rotate-45 translate-y-2" : "translate-y-0"
               }`}
             />
             {/* Middle Bar */}
             <span
-              className={`absolute left-0 top-2 w-6 h-0.5  dark:bg-[var(--foreground)]  transition-all duration-300 ease-in-out ${
+              className={`absolute left-0 top-2 w-6 h-0.5 bg-[var(--foreground)] dark:bg-[var(--foreground)]  transition-all duration-300 ease-in-out ${
                 menuOpen ? "opacity-0" : "opacity-100"
               }`}
             />
             {/* Bottom Bar */}
             <span
-              className={`absolute left-0 top-4 w-6 h-0.5  dark:bg-[var(--foreground)] transform transition-all duration-300 ease-in-out ${
+              className={`absolute left-0 top-4 w-6 h-0.5 bg-[var(--foreground)] dark:bg-[var(--foreground)] transform transition-all duration-300 ease-in-out ${
                 menuOpen ? "-rotate-45 -translate-y-2" : "translate-y-0"
               }`}
             />
