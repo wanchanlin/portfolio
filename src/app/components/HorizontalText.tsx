@@ -39,7 +39,7 @@ export default function HorizontalScrollText() {
   }, []);
 
   return (
-    <section ref={componentRef} className="overflow-hidden bg-[var(--background)]">
+    <section ref={componentRef} className="overflow-hidden">
       {/* This inner div is what actually moves. 
           w-fit ensures it expands to fit all timeline items. 
       */}
