@@ -72,7 +72,7 @@ export default function AboutPage() {
         <div className={activeTab === "Program" ? "block" : "hidden"}>
           <div className="border-2 pattern-square  p-6  shadow-[4px_4px_0px_var(--foreground)]">
             <div className="service-content">
-              <Image className="mb-3" src="/images/code.png" alt="Code Icon" width={50} height={50} />
+            
               <h3 className="text-xl font-semibold mb-2">Program</h3>
               <p className="text-[var(--foreground)]">
                 Creating dynamic and responsive websites using the latest web technologies. 
@@ -102,7 +102,7 @@ export default function AboutPage() {
         <div className={activeTab === "Design" ? "block" : "hidden"}>
           <div className="border-2 border-[var(--retro-primary)] p-6 p-6  shadow-[4px_4px_0px_var(--foreground)] ">
             <div className="service-content">
-              <Image className="mb-3" src="/images/design.png" alt="Design Icon" width={50} height={50} />
+             
               <h3 className="text-xl font-semibold mb-2">Design</h3>
               <p className="text-[var(--foreground)]">
                 Crafting visually stunning designs for various media, including graphic design, 
