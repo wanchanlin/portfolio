@@ -60,11 +60,12 @@ export default function HorizontalScrollText() {
               {
                 id: '1',
                 title: 'Web Developer',
-                company: 'Polaron Tech',
+                company: 'Polaron Energy',
                 period: '2026 - Present',
                 type: 'work',
-                description: ['Built scalable Next.js apps', 'Led frontend architecture'],
-                technologies: ['React', 'Next.js', 'HTML', 'CSS']
+                description: ['Design UI/UX', 'Use MCP to Build the FrontEnd'],
+                technologies: ['Figma', 'HTML', 'CSS','Javascript','Tailwind'
+                ]
               },
               {
                 id: '2',
@@ -73,7 +74,7 @@ export default function HorizontalScrollText() {
                 period: '2025 - 2026',
                 type: 'work',
                 description: ['Pixel-perfect UI implementation', 'Client-side optimization'],
-                technologies: ['Html', 'CSS', 'GSAP']
+                technologies: ['Html', 'CSS','CMS']
               },
               {
                 id: '3',
@@ -82,7 +83,7 @@ export default function HorizontalScrollText() {
                 period: '2024 - 2025',
                 type: 'education',
                 description: ['Specialized in Software Systems', 'Dean\'s List'],
-                technologies: [ 'Web Development Fundamentals','php', 'HTML', 'CSS', 'SQL', '.NET',]
+                technologies: [ 'Web Development Fundamentals','php', 'HTML', 'CSS','Typescript', 'SQL', '.NET',]
               },
               {
                 id: '4',
