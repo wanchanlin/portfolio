@@ -17,14 +17,7 @@ A modern portfolio website built with Next.js, TypeScript, and Tailwind CSS.
 - TypeScript
 - Tailwind CSS
 - React
-
-## Getting Started
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/portfolio.git
-cd portfolio
-```
+- Sanity
 
 2. Install dependencies:
 ```bash
@@ -76,10 +69,6 @@ The site can be deployed to Vercel:
 npm run build
 vercel
 ```
-
-## License
-
-MIT License
 
 ## Contact
 
