@@ -82,7 +82,7 @@ export default function Timeline({ items }: TimelineProps) {
                   type: "spring", 
                   damping: 12, 
                   stiffness: 90, 
-                  delay: 0.3 + (index * 0.1) 
+                  delay: 0.1 + (index * 0.05) 
                 }}
                 className="relative bg-[var(--background)] border-2 border-[var(--retro-primary)] p-6 shadow-[8px_8px_0px_var(--foreground)] w-80 h-[360px] flex flex-col z-10 hover:shadow-[12px_12px_0px_var(--retro-primary)] transition-all duration-300"
               >
