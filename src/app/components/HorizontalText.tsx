@@ -91,7 +91,7 @@ export default function HorizontalScrollText() {
                 company: 'Rakuten',
                 period: '2020',
                 type: 'work',
-                description: ['Internal tool development', 'API integrations'],
+                description: ['Establsih Design System', 'Web Campaign Design & Developement'],
                 technologies: ['Html', 'CSS', 'Javascript']
               }
             ]}
