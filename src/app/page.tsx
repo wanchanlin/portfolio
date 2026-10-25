@@ -100,8 +100,16 @@ export default function Home() {
               </span>
             </div>
           </div>
-          <div className="w-full">
-            <BinaryGrid />
+            <div className="w-full flex justify-center bg-transparent">
+            <video
+              src="/images/robot.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="block h-auto w-full max-w-2xl bg-transparent object-contain mix-blend-screen"
+              aria-label="Looping robot animation"
+            />
           </div>
         </section>
 

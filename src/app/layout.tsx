@@ -8,13 +8,10 @@ config.autoAddCss = false
 
 
 
-import Navigation2 from './components/Navigation2'
-
-import Footer2 from "./components/Footer2";
+import AppChrome from './components/AppChrome'
 import { ThemeProvider } from './components/ThemeProvider'
 import GoogleAnalytics from './components/GoogleAnalytics'
 import { GA_MEASUREMENT_ID, SITE_URL } from '../config'
-import RunningText from './components/RunningText'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -49,18 +46,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ThemeProvider>
-          {/* <Navigation /> */}
-          <Navigation2 />
-          <RunningText />
-
-          <main className="min-h-screen">
-            {children}
-          </main>
-          {/* <Footer /> */}
-          <Footer2 />
+          <AppChrome><main className="min-h-screen">{children}</main></AppChrome>
           <GoogleAnalytics />
         </ThemeProvider>
       </body>
     </html>
   )
 }
+
