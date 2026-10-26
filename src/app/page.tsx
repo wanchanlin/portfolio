@@ -101,16 +101,19 @@ export default function Home() {
             </div>
           </div>
             <div className="w-full flex justify-center bg-transparent">
-            <video
-              src="/images/robot.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="block h-auto w-full max-w-2xl bg-transparent object-contain mix-blend-screen"
-              aria-label="Looping robot animation"
-            />
-          </div>
+              {/* 1:1 Container with overflow hidden */}
+              <div className="relative w-full max-w-lg aspect-square overflow-hidden rounded-lg">
+                <video
+                  src="/images/robot.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 h-full w-full bg-transparent object-cover mix-blend-screen"
+                  aria-label="Looping robot animation"
+                />
+              </div>
+            </div>
         </section>
 
         <section>
