@@ -104,14 +104,14 @@ export default function Home() {
               {/* 1:1 Container with overflow hidden */}
               <div className="relative w-full max-w-lg aspect-square overflow-hidden rounded-lg">
                 <video
-  src="/images/robot.webm"
-  autoPlay
-  muted
-  loop
-  playsInline
-  className="absolute inset-0 h-full w-full bg-transparent object-cover"
-  aria-label="Looping robot animation"
-/>
+                src="/images/robot2.webm"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 h-full w-full bg-transparent object-cover"
+                aria-label="Looping robot animation"
+              />
               </div>
             </div>
         </section>
