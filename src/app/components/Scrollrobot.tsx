@@ -86,7 +86,7 @@ export function ScrollRobot({ children }: { children?: ReactNode }) {
           <span>DESIGN / CODE / CREATE / DESIGN / CODE / CREATE /</span>
         </div>
 
-        <div ref={robotRef} className="relative z-10 w-full max-w-5xl overflow-hidden rounded-lg will-change-transform">
+        <div ref={robotRef} className="relative z-10 w-[160vw] shrink-0 overflow-hidden rounded-lg will-change-transform md:w-full md:max-w-5xl">
           <img
             src={frameSrc(frame)}
             alt="Robot rotating as you scroll"
