@@ -10,6 +10,7 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react"; 
 import BinaryGrid from "./components/BinaryGrid";
 import HorizontalScrollText from "./components/HorizontalText";
+import { ScrollRobot } from "./components/Scrollrobot";
 import { client } from "../sanity/lib/client";
 // import { sanityFetch } from "../sanity/lib/live";
 
@@ -89,7 +90,7 @@ export default function Home() {
     <GSAPWrapper>
       <main ref={container} className="px-4">
         {/* Hero Section */}
-        <section className="mx-auto max-w-5xl min-h-[60vh] mt-24 flex flex-col justify-between">
+        <ScrollRobot>
           <div id="hero-text" className="flex flex-col text-center">
             <span className="text-4xl font-semibold text-[var(--foreground)]">
               Hi, I am Joyce
@@ -100,21 +101,7 @@ export default function Home() {
               </span>
             </div>
           </div>
-            <div className="w-full flex justify-center ">
-              {/* 1:1 Container with overflow hidden */}
-              <div className="relative w-full max-w-lg aspect-square overflow-hidden rounded-lg">
-                <video
-                src="/images/robot2.webm"
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="absolute inset-0 h-full w-full bg-transparent object-cover"
-                aria-label="Looping robot animation"
-              />
-              </div>
-            </div>
-        </section>
+        </ScrollRobot>
 
         <section>
           <HorizontalScrollText />
