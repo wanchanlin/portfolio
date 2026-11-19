@@ -94,7 +94,7 @@ export default function ContactForm() {
             <Link href="https://www.linkedin.com/in/wanchanlin/" target="_blank" aria-label="LinkedIn">
               <FontAwesomeIcon icon={faLinkedin} className='text-4xl hover:text-[var(--retro-primary)] transition-colors'/>
             </Link>
-            <Button size="sm" href="https://drive.google.com/file/d/1WMRM53EZVsGQciQ1KZ6U-PWWpXPaP5XD/view?usp=sharing">
+            <Button size="sm" variant="primary" href="https://drive.google.com/file/d/1WMRM53EZVsGQciQ1KZ6U-PWWpXPaP5XD/view?usp=sharing">
   [DOWNLOAD_RESUME] 
 </Button>
             
@@ -152,8 +152,8 @@ export default function ContactForm() {
             />
           </div>
 
-          <div className="flex items-center gap-4">
-            <Button  type="submit"
+          <div className=" flex items-center gap-4">
+            <Button variant="secondary"  type="submit"
               disabled={submitting}
             >{submitting ? 'SENDING...' : 'SEND MESSAGE'}
             </Button>

@@ -83,7 +83,7 @@ export function ScrollRobot({ children }: { children?: ReactNode }) {
           className="pointer-events-none absolute left-0 top-1/2 z-0 flex w-max whitespace-nowrap text-[clamp(4rem,11vw,10rem)] font-black uppercase leading-none tracking-tight text-[var(--foreground)] opacity-40 will-change-transform"
           style={{ transform: "translate3d(0, -50%, 0)" }}
         >
-          <span>DESIGN / CODE / CREATE / DESIGN / CODE / CREATE /</span>
+          <span>DESIGN / CODE / COFFEE / COOKING / CODE / CREATE /</span>
         </div>
 
         <div ref={robotRef} className="relative z-10 w-[160vw] shrink-0 overflow-hidden rounded-lg will-change-transform md:w-full md:max-w-5xl">

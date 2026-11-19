@@ -87,7 +87,7 @@ export default function Timeline({ items }: TimelineProps) {
                 className="relative bg-[var(--background)] border-2 border-[var(--retro-primary)] p-6 shadow-[8px_8px_0px_var(--foreground)] w-80 h-[360px] flex flex-col z-10 hover:shadow-[12px_12px_0px_var(--retro-primary)] transition-all duration-300"
               >
                 {/* Floating Badge */}
-                <div className="absolute -top-3 -right-3 bg-yellow-400 text-black text-xs font-black px-3 py-1 border-2 border-black uppercase shadow-[2px_2px_0px_black] z-30">
+                <div className="absolute -top-3 -right-3 bg-yellow-500 text-black text-xs font-black px-3 py-1 border-2 border-black uppercase shadow-[2px_2px_0px_black] z-30">
                   {item.type}
                 </div>
 

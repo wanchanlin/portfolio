@@ -37,7 +37,7 @@ export default function Button({
   const baseClasses = 'inline-flex items-center justify-center font-bold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed'
   
   const variantClasses = {
-    primary: 'mt-4 w-fit gap-3 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg  hover:shadow-[2px_2px_0px_var(--foreground)]  shadow-[4px_4px_0px_var(--foreground)] transition-all font-bold group',
+    primary: 'mt-4 w-fit gap-3 flex items-center bg-[var(--neon-green)] text-black border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg  hover:shadow-[2px_2px_0px_var(--foreground)]  shadow-[4px_4px_0px_var(--foreground)] transition-all font-bold group',
     secondary: 'mt-4 w-fit gap-3 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg  hover:shadow-[2px_2px_0px_var(--foreground)]  shadow-[4px_4px_0px_var(--foreground)] transition-all font-bold group',
     outline: 'mt-4 w-fit gap-3 flex items-center border-2 border-[var(--retro-primary)] px-6 py-2 rounded-pixel-lg  hover:shadow-[2px_2px_0px_var(--foreground)]  shadow-[4px_4px_0px_var(--foreground)] transition-all font-bold group'
   }

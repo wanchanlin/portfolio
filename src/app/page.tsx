@@ -9,7 +9,7 @@ import { gsap } from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react"; 
 import BinaryGrid from "./components/BinaryGrid";
-import HorizontalScrollText from "./components/HorizontalText";
+import ExperienceCard from "./components/ExpericeCard";
 import { ScrollRobot } from "./components/Scrollrobot";
 import { client } from "../sanity/lib/client";
 // import { sanityFetch } from "../sanity/lib/live";
@@ -96,7 +96,7 @@ export default function Home() {
               Hi, I am Joyce
             </span>
             <div className="mt-4 flex items-center justify-center">
-              <span className="scramble lg:text-4xl md:text-3xl text-2xl p-4 font-semibold text-black border-2 border-[var(--retro-primary)] bg-yellow-200 drop-shadow-[4px_4px_0px_var(--foreground)]">
+              <span className="scramble lg:text-4xl md:text-3xl text-2xl p-4 font-semibold text-black border-2 border-[var(--retro-primary)] bg-yellow-500 drop-shadow-[4px_4px_0px_var(--foreground)]">
                 |
               </span>
             </div>
@@ -104,7 +104,7 @@ export default function Home() {
         </ScrollRobot>
 
         <section>
-          <HorizontalScrollText />
+          <ExperienceCard />
         </section>
 
         {/* Projects Section */}
